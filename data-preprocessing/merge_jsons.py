@@ -3,7 +3,7 @@ import json
 import glob
 import os
 import ndjson
-path2 = "TelevisionNewsJSON/"
+path2 = "../../dataset/TelevisionNewsJSON/"
 
 result = []
 #add files to be merged in a new folder called "to_merge"
@@ -13,7 +13,7 @@ for file in os.listdir(path2):
 		line = json.loads(line)
 		result.append(line)
 
-outfile = open("final.json", "w")
+outfile = open("../../dataset/final.json", "w")
 
-json.dump(result, outfile)
+ndjson.dump(result, outfile)
 outfile.close()
