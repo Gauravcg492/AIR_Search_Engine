@@ -3,13 +3,6 @@
 - First create a folder to store the converted files ```mkdir TelevisionNewsJSON ```
 - Run ```python3 csv-to-json.py``` to convert multiple csv to json files
 - Run ```python3 merge_jsons.py``` to merge the multiple jsons into a single file ```final.json```
-- Assumed Directory Structure:
-```
-	Project
-	|-- AIR_Search_Engine
-	|-- dataset
-	    |-- TelevisionNews
-	    |-- TelevisionNewsJSON
-```
+
 
 	
