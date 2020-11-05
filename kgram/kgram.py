@@ -1,7 +1,7 @@
 import nltk
 import bisect
 
-class kgram:
+class Kgram:
     # Initializes the class with inverted index
     def __init__(self, inv_index):
         self.inv_ind = inv_index

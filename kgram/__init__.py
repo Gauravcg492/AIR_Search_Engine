@@ -1,1 +1,1 @@
-from .kgram import kgram
+from .kgram import Kgram
