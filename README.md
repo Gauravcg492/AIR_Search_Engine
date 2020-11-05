@@ -15,9 +15,11 @@ Here just function call for positional intersect is done but implementation of t
 
 
 # Steps:
-1. Preprocessing Data - CSV -> JSON 
-2. Inverted Index Construction
- - includes handling of stop words, lemmatization
+Enter the directories in the order mentioned below and follow the commands in their README's
+1. ```cd data-preprocessing```
+   Preprocessing Data: CSV -> JSON 
+2. ```cd inverted-index```
+   Inverted Index Construction: includes handling of stop words, lemmatization
 
 # Tasks List:
 https://docs.google.com/document/d/1KEH00macDTNX73amR6YIomIsJDaQ_df0eBdU33pyeFY/edit

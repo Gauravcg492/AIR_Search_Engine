@@ -11,7 +11,8 @@ file = open("../../temp-data/term_doc_id_pos", "w") #intermediate
 mapper = open("../doc_id_url_mappings", "w") #required globally
 count = 0 
 temp = 1
-
+stop_words = stopwords.words('english').copy()
+stop_words.extend(["'re", "n't"])
 # function to convert nltk tag to wordnet tag
 def nltk_tag_to_wordnet_tag(nltk_tag):
     if nltk_tag.startswith('J'):
@@ -41,7 +42,7 @@ def lemmatize(token):
 
 for line in open(dataset):
 		# TEST COMMENT BEGINS HERE
-		# if(count==3):
+		# if(count==100):
 		# 	break
 		# count+=1
 		# TEST COMMENT ENDS HERE
@@ -54,22 +55,28 @@ for line in open(dataset):
 		for el in record.keys():
 			pos_counter = 0
 			value = record[el]
-			tokens = nltk.word_tokenize(value)
+			if(el=="IAPreviewThumb"):
+				tokens = [value]
+			else:
+				tokens = nltk.word_tokenize(value)
 			for token in tokens:
-				# add code to ignore stop words here
-				# handle pos_counter accordingly
 				token=token.replace('-','')
+				token=token.replace(',', '')
+				if(token.startswith("'")):
+					token=token[1:]
 				if(token=='' or token =="'s" or (str(token) in string.punctuation)):
 					#ignoring punctuation tokens
 					continue
-				if (str(token) in stopwords.words('english')):
+				if (str(token) in stop_words):
 					# removing stop words but retaining their position
 					pos_counter+=1
 					continue
+
 				token = lemmatize(token)
-				file.write(token +","+ str(curr_doc_id) + "," + str(pos_counter) + "," + str(el) + "\n")
+				token = token.lower() #convert to lowercase for uniformity
+				file.write(token +","+ str(curr_doc_id) + "," + str(pos_counter) + "," + str(el).lower() + "\n")
 				pos_counter+=1
 
 		temp+=1
-		file.write("\n")
+		#file.write("\n")
 

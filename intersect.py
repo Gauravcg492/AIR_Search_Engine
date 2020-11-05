@@ -36,13 +36,14 @@ def posintersect(p1,p2,k):
 
 def posinter_over_invindex(invindex,query,k):
     d = {}
-    N = 418
+    doclim=10
     for t in set(query.split()):
-        d[t] = N//10**invindex[t][0]
+        d[t] = len(invindex[t])
     s = sorted(d)
-    p1 = invindex[s[0]][1]
+    p1 = invindex[s[0]][2] if len(invindex[s[0]])<=doclim else invindex[s[0]][1]
     for i in range(1,len(s)):
-        p1 = posintersect(p1,invindex[s[i]][1],k)
+        p3 = invindex[s[i]][2] if len(invindex[s[i]])<=doclim else invindex[s[i]][1]
+        p1 = posintersect(p1,p3,k)
     return list(set(map(lambda l:l[0],p1)))
 
 def merge_docs(inv_ind, terms, champion_list = False):
