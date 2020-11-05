@@ -13,6 +13,15 @@ class search:
         # pass inv_ind to kgram
         # self.kgram = Kgram(self.inv_ind)
         pass
+    
+    # Function which intersects the terms in query and then score the intersected documents
+    def intersect_score(self):
+        # doc_list = intersect(self.inv_ind, self.query)
+        doc_list = [1]
+        return cosine_scoring.get_cosine_score(self.inv_ind, self.query_terms, doc_list)
+    
+    # Function which finds cosine score from champion list of the queries
+
 
     def search(self, query_text):
         query_terms = []
@@ -31,4 +40,5 @@ class search:
             if term not in self.inv_ind:
                 do_correction = True
             query_terms.append(term)
-        query = ' '.join(query_terms)
+        self.query_terms = query_terms
+        self.query = ' '.join(query_terms)
