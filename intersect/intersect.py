@@ -47,7 +47,7 @@ def posintersect(p1,p2,k):
             nans.append((t[0],[t[2]],0))
     return nans
 
-def posinter_over_invindex(invindex,query,k):
+def posinter_over_invindex(invindex,query):
     d = {}
     doclim=10
     tokens = nltk.word_tokenize(query)
