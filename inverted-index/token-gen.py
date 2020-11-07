@@ -6,13 +6,22 @@ from nltk.corpus import wordnet
 from nltk.corpus import stopwords
 lemmatizer = WordNetLemmatizer()
 
+stop_words = stopwords.words('english').copy()
+stop_words.extend(["'re", "n't"])
+pos_counter = 0
+
 dataset = "../../dataset/final.json"
 file = open("../../temp-data/term_doc_id_pos", "w") #intermediate
 mapper = open("../doc_id_url_mappings", "w") #required globally
-count = 0 
-temp = 1
-stop_words = stopwords.words('english').copy()
-stop_words.extend(["'re", "n't"])
+
+def increment_pos():
+	global pos_counter
+	pos_counter+=1
+
+def reset_pos():
+	global pos_counter
+	pos_counter =0
+
 # function to convert nltk tag to wordnet tag
 def nltk_tag_to_wordnet_tag(nltk_tag):
     if nltk_tag.startswith('J'):
@@ -40,7 +49,26 @@ def lemmatize(token):
             lemmatized_word = lemmatizer.lemmatize(word, tag)
             return lemmatized_word
 
-for line in open(dataset):
+def normalize(token):
+	token=token.replace('-','')
+	token=token.replace(',', '')
+	if(token.startswith("'")):
+		token=token[1:]
+	if(token=="'s" or (str(token) in string.punctuation)):
+		#ignoring punctuation tokens
+		return ''
+	if (str(token) in stop_words):
+		# removing stop words but retaining their position
+		increment_pos()
+		return ''
+	token = lemmatize(token) 
+	token = token.lower() #convert to lowercase for uniformity
+	return token
+
+def driver():
+	count = 0 
+	temp = 1
+	for line in open(dataset):
 		# TEST COMMENT BEGINS HERE
 		# if(count==100):
 		# 	break
@@ -53,30 +81,24 @@ for line in open(dataset):
 		mapper.write(str(curr_doc_id)+','+str(curr_doc_url)+'\n')
 		del record["\ufeffURL"]
 		for el in record.keys():
-			pos_counter = 0
+			reset_pos()
 			value = record[el]
 			if(el=="IAPreviewThumb"):
 				tokens = [value]
 			else:
 				tokens = nltk.word_tokenize(value)
 			for token in tokens:
-				token=token.replace('-','')
-				token=token.replace(',', '')
-				if(token.startswith("'")):
-					token=token[1:]
-				if(token=='' or token =="'s" or (str(token) in string.punctuation)):
-					#ignoring punctuation tokens
+				token = normalize(token)
+				if(token ==''):
 					continue
-				if (str(token) in stop_words):
-					# removing stop words but retaining their position
-					pos_counter+=1
-					continue
-
-				token = lemmatize(token)
-				token = token.lower() #convert to lowercase for uniformity
 				file.write(token +","+ str(curr_doc_id) + "," + str(pos_counter) + "," + str(el).lower() + "\n")
-				pos_counter+=1
+				increment_pos()
 
 		temp+=1
 		#file.write("\n")
+
+if __name__ == "__main__": 
+	driver()
+
+
 
