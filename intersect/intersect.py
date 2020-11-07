@@ -32,17 +32,47 @@ def posintersect(p1,p2,k):
                 i += 1
             else:
                 j += 1
-    return list(map(lambda x:x[0],ans))
+    nans = []
+    for t in ans:
+        lgth = len(nans)
+        i=0
+        for nt in nans:
+            if t[0] == nt[0]:
+                if t[2] not in nt[1]:
+                    nt[1].append(t[2])
+                    break
+            else:
+                i += 1
+        if i == lgth:
+            nans.append((t[0],[t[2]],0))
+    return nans
 
-def posinter_over_invindex(invindex,query,k):
+def posinter_over_invindex(invindex,query):
     d = {}
     doclim=10
-    for t in set(query.split()):
-        d[t] = len(invindex[t])
-    s = sorted(d)
-    p1 = invindex[s[0]][2] if len(invindex[s[0]])<=doclim else invindex[s[0]][1]
+    tokens = nltk.word_tokenize(query)
+    for token in tokens:
+        token = normalize(token)
+        if(token ==''):
+            continue
+    q = []
+    itr = 0
+    enum = list(query.split())
+    for token in tokens:
+        while itr < len(enum):
+            if token == enum[itr]:
+                q.append((token,itr))
+                itr += 1
+                break
+            else:
+                itr += 1
+    for t in q:
+        d[t] = len(invindex[t[0]])
+    s = sorted(d,key=lambda x:d[x])
+    p1 = invindex[s[0][0]][2] if len(invindex[s[0][0]])<=doclim else invindex[s[0][0]][1]
     for i in range(1,len(s)):
-        p3 = invindex[s[i]][2] if len(invindex[s[i]])<=doclim else invindex[s[i]][1]
+        p3 = invindex[s[i][0]][2] if len(invindex[s[i][0]])<=doclim else invindex[s[i][0]][1]
+        k = abs(s[i][1] - s[i-1][1])
         p1 = posintersect(p1,p3,k)
     return list(set(map(lambda l:l[0],p1)))
 

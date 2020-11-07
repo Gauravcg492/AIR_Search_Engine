@@ -10,7 +10,8 @@
 	sort --version-sort term_doc_id_pos > term_doc_id_pos_sorted
 	``` 
 	- sorts the (term, doc-id, pos, zone) quadruplets in that order.
-3. Open ``` inverted-index.ipynb``` in Jupyter Notebook and run all the cells
+3. ```cd ../AIR_Search_Engine/inverted-index``` 
+	Open ``` inverted-index.ipynb``` in Jupyter Notebook and run all the cells
 	- generates ``` inv_index.json ``` in ```Project```
 	- takes long to execute
 	- Format of inverted_index:
