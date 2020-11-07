@@ -47,14 +47,17 @@ def posintersect(p1,p2,k):
             nans.append((t[0],[t[2]],0))
     return nans
 
-def posinter_over_invindex(invindex,query):
+def posinter_over_invindex(invindex,query, wildcard_index, champion =True):
+    index = 2 #champion
+    if(not champion):
+        index =1
     d = {}
     doclim=10
-    tokens = nltk.word_tokenize(query)
-    for token in tokens:
-        token = normalize(token)
-        if(token ==''):
-            continue
+    # tokens = nltk.word_tokenize(query)
+    # for token in tokens:
+    #     token = normalize(token)
+    #     if(token ==''):
+    #         continue
     q = []
     itr = 0
     enum = list(query.split())
@@ -69,9 +72,10 @@ def posinter_over_invindex(invindex,query):
     for t in q:
         d[t] = len(invindex[t[0]])
     s = sorted(d,key=lambda x:d[x])
-    p1 = invindex[s[0][0]][2] if len(invindex[s[0][0]])<=doclim else invindex[s[0][0]][1]
+    p1 = invindex[s[0][0]][index] if ('*' not in s[0][0]) else wildcard_index[s[0][0]][1]
     for i in range(1,len(s)):
-        p3 = invindex[s[i][0]][2] if len(invindex[s[i][0]])<=doclim else invindex[s[i][0]][1]
+        p3 =  invindex[s[i][0]][index] if ('*' not in s[i][0]) else wildcard_index[s[i][0]][1]
+        #p3 = invindex[s[i][0]][2] if len(invindex[s[i][0]])<=doclim else invindex[s[i][0]][1]
         k = abs(s[i][1] - s[i-1][1])
         p1 = posintersect(p1,p3,k)
     return list(set(map(lambda l:l[0],p1)))
