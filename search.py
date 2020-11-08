@@ -47,6 +47,13 @@ class search:
                 max_term = t
         return max_term
 
+    def get_wild_query(self, term):
+        prefix = True if term[-1] == '*' else False
+        tquery = term.replace('*','')
+        kdict = self.kgram.get_kgram_query(tquery)
+        return intersect.kgramintersect(kdict,prefix)
+        
+
     def search(self, query_text):
         query_terms = []
         position = -1
