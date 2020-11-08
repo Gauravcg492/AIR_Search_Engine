@@ -38,15 +38,16 @@ class Kgram:
     # Function for getting kgram entries of the query_term provided
     # Input query_term Ex: 'apple'
     # Output dictionary of  kgram entries Ex: {'a':[term1, term2], 'ap': [term2, term3]}
-    def get_kgram_query(self, query_term):
+    def get_kgram_query(self, query_term, get_unigram=True):
         kgram_query = {}
-        unigrams = list(query_term)
-        for unigram in unigrams:
-            if unigram not in kgram_query:
-                if unigram in self.kgram_ind:
-                    kgram_query[unigram] = self.kgram_ind[unigram].copy()
-                else:
-                    kgram_query[unigram] = []
+        if get_unigram:
+            unigrams = list(query_term)
+            for unigram in unigrams:
+                if unigram not in kgram_query:
+                    if unigram in self.kgram_ind:
+                        kgram_query[unigram] = self.kgram_ind[unigram].copy()
+                    else:
+                        kgram_query[unigram] = []
         
         bigrams = list(nltk.bigrams(query_term))
         for bigram in bigrams:

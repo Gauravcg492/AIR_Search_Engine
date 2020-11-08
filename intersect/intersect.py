@@ -54,8 +54,8 @@ def posinter_over_invindex(invindex,query, wildcard_index, champion =True):
         index = 1
     if '*' in query:
         prefix = True if query[-1] == '*' else False
-        query = query.replace('*','')
-        kdict = get_kgram_query(query)
+        tquery = query.replace('*','')
+        kdict = get_kgram_query(tquery)
         kterms = kgramintersect(kdict,prefix)
         return merge_docs(invindex,kterms)
     else:
@@ -128,4 +128,5 @@ def kgramintersect(kgramdict,pref):
             continue
     for rem in remlst:
         res.remove(rem)
+    del rem
     return res
