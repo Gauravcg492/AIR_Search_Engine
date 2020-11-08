@@ -6,13 +6,13 @@ from kgram import Kgram
 from cosine_scoring import cosine_scoring
 from inverted_index import token_gen
 from intersect import intersect
-#from read_inv_index import get_inv_ind
+from read_inv_index import get_inv_index
 
 class search:
     def __init__(self):
         # for preprocessing data
-        self.inv_ind = {}
-        # self.inv_ind = get_inv_ind()
+        # self.inv_ind = {}
+        self.inv_ind = get_inv_index()
         # pass inv_ind to kgram
         self.kgram = Kgram(self.inv_ind)
         self.k =10
