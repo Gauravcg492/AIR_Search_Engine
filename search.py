@@ -16,7 +16,6 @@ class search:
         # pass inv_ind to kgram
         self.kgram = Kgram(self.inv_ind)
         self.k =10
-        self.mappings = get_mappings() #TODO: should return dict {doc_id = URL}
         pass
     
     # Function which intersects the terms in query and then score the intersected documents
@@ -81,9 +80,3 @@ class search:
         if(len(cosine_score1)> k):
             for score in cosine_score1[::-1]:
                 doc_id= score[1]
-                url = self.mappings[doc_id]
-                # TODO: snippet = 
-
-
-            # TODO:
-            # read doc 
