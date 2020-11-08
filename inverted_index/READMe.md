@@ -1,16 +1,16 @@
 # Tokenization
-1. ```python3 token-gen.py``` 
+1. ```python3 token_gen.py``` 
 	- generates tokens, removes stop words, does lemmatization and other normalization techniques. 
 	- Creates (term, doc-id, pos, zone) quadruplets
 	- takes long to execute
-	- generates ```doc-id-url-mappings``` in ```AIR_Search_Engine``` and ```term_doc_id_pos``` in ```temp-data```
+	- generates ```term_doc_id_pos``` in ```temp-data```
 	
 2. ```
 	cd ../../temp-data
 	sort --version-sort term_doc_id_pos > term_doc_id_pos_sorted
 	``` 
 	- sorts the (term, doc-id, pos, zone) quadruplets in that order.
-3. ```cd ../AIR_Search_Engine/inverted-index``` 
+3. ```cd ../AIR_Search_Engine/inverted_index``` 
 	Open ``` inverted-index.ipynb``` in Jupyter Notebook and run all the cells
 	- generates ``` inv_index.json ``` in ```Project```
 	- takes long to execute
@@ -32,5 +32,4 @@ Project
 	|-- temp-data
 	|-- dataset
 	    |-- TelevisionNews
-	    |-- TelevisionNewsJSON
 ```
