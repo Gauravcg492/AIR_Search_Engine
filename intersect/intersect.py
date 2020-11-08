@@ -128,4 +128,5 @@ def kgramintersect(kgramdict,pref):
             continue
     for rem in remlst:
         res.remove(rem)
+    del rem
     return res
