@@ -1,8 +1,10 @@
 import json
-def get_term(record):
-	return record.keys()[0]
+def get_inv_index():
+	f = open("../inv_index.json"):
+	inv_index = json.load(f)
+	return inv_index
 
-def get_idf(record):
+'''def get_idf(term):
 	return record[get_term(record)][0]
 
 def get_postings_list(record):
@@ -13,6 +15,7 @@ def get_champ_list(record):
 
 def get_zones_list(record):
 	return record[get_term(record)][2]
+'''
 
 '''
 DRIVER CODE:	
