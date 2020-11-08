@@ -104,42 +104,6 @@ def driver():
 							increment_pos()
 
 
-
-				
-
-
-# def driver():
-# 	count = 0 
-# 	temp = 1
-# 	for line in open(dataset):
-# 		# TEST COMMENT BEGINS HERE
-# 		# if(count==100):
-# 		# 	break
-# 		# count+=1
-# 		# TEST COMMENT ENDS HERE
-
-# 		record = json.loads(line) 
-# 		curr_doc_url = record["\ufeffURL"]
-# 		curr_doc_id = temp
-# 		mapper.write(str(curr_doc_id)+','+str(curr_doc_url)+'\n')
-# 		del record["\ufeffURL"]
-# 		for el in record.keys():
-# 			reset_pos()
-# 			value = record[el]
-# 			if(el=="IAPreviewThumb"):
-# 				tokens = [value]
-# 			else:
-# 				tokens = nltk.word_tokenize(value)
-# 			for token in tokens:
-# 				token = normalize(token)
-# 				if(token ==''):
-# 					continue
-# 				file.write(token +","+ str(curr_doc_id) + "," + str(pos_counter) + "," + str(el).lower() + "\n")
-# 				increment_pos()
-
-# 		temp+=1
-# 		#file.write("\n")
-
 if __name__ == "__main__": 
 	driver()
 
