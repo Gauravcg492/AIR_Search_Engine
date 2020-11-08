@@ -45,41 +45,45 @@ def posintersect(p1,p2,k):
                 i += 1
         if i == lgth:
             nans.append((t[0],[t[2]],0))
+    del ans
     return nans
 
 def posinter_over_invindex(invindex,query, wildcard_index, champion =True):
     index = 2 #champion
-    if(not champion):
-        index =1
-    d = {}
-    doclim=10
-    # tokens = nltk.word_tokenize(query)
-    # for token in tokens:
-    #     token = normalize(token)
-    #     if(token ==''):
-    #         continue
-    q = []
-    itr = 0
-    enum = list(query.split())
-    for token in tokens:
-        while itr < len(enum):
-            if token == enum[itr]:
-                q.append((token,itr))
-                itr += 1
-                break
-            else:
-                itr += 1
-    for t in q:
-        d[t] = len(invindex[t[0]])
-    s = sorted(d,key=lambda x:d[x])
-    p1 = invindex[s[0][0]][index] if ('*' not in s[0][0]) else wildcard_index[s[0][0]][1]
-    for i in range(1,len(s)):
-        p3 =  invindex[s[i][0]][index] if ('*' not in s[i][0]) else wildcard_index[s[i][0]][1]
-        #p3 = invindex[s[i][0]][2] if len(invindex[s[i][0]])<=doclim else invindex[s[i][0]][1]
-        k = abs(s[i][1] - s[i-1][1])
-        p1 = posintersect(p1,p3,k)
-    return list(set(map(lambda l:l[0],p1)))
-
+    if not champion :
+        index = 1
+    if '*' in query:
+        prefix = True if query[-1] == '*' else False
+        tquery = query.replace('*','')
+        kdict = get_kgram_query(tquery)
+        kterms = kgramintersect(kdict,prefix)
+        return merge_docs(invindex,kterms)
+    else:
+        d = {}
+        doclim=10
+        q = []
+        itr = 0
+        enum = list(query.split())
+        for token in tokens:
+            while itr < len(enum):
+                if token == enum[itr]:
+                    q.append((token,itr))
+                    itr += 1
+                    break
+                else:
+                    itr += 1
+        for t in q:
+            d[t] = len(invindex[t[0]])
+        s = sorted(d,key=lambda x:d[x])
+        del q
+        del d
+        p1 = invindex[s[0][0]][index] if ('*' not in s[0][0]) else wildcard_index[s[0][0]][1]
+        for i in range(1,len(s)):
+            p3 =  invindex[s[i][0]][index] if ('*' not in s[i][0]) else wildcard_index[s[i][0]][1]
+            k = abs(s[i][1] - s[i-1][1])
+            p1 = posintersect(p1,p3,k)
+        return list(set(map(lambda l:l[0],p1)))
+    
 def merge_docs(inv_ind, terms, champion_list = False):
     doc_set = set()
     index = 1
@@ -102,24 +106,27 @@ def kgr(kg1,kg2):
             kg1.remove(term)
     return ans
 
-def kgramintersect(kgramdict):
+def kgramintersect(kgramdict,pref):
     itr = iter(kgramdict)
     res = kgramdict[next(itr)]
     for _ in range(len(kgramdict)-1):
         res = kgr(res,kgramdict[next(itr)])
-    candlst=[]
-    kgramlst = kgramdict.keys()
+    itr = iter(kgramdict)
+    orig = next(itr)
+    for _ in range(len(kgramdict)-2):
+        orig += next(itr)[1]
+    remlst = []
     for i in range(len(res)):
-        f=1
-        s = res[i]
-        for kgram in kgramlst:
-            if f:
-                r = s.replace(kgram,"")
-                if r==s:
-                    f=0
-                    break
-                else:
-                    s=r
-        if f:
-            candlst.append(res[i])
-    return candlst
+        if orig not in res[i]:
+            remlst.append(res[i])
+            continue
+        elif pref and orig != res[i][:len(orig)]:
+            remlst.append(res[i])
+            continue
+        elif not pref and orig != res[i][-len(orig):]:
+            remlst.append(res[i])
+            continue
+    for rem in remlst:
+        res.remove(rem)
+    del rem
+    return res
