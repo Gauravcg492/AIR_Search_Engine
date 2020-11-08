@@ -25,7 +25,7 @@ def posintersect(p1,p2,k):
                 while l and abs(l[0]-pp1[x])>k:
                     l.pop(0)
                 for ps in l:
-                    ans.append((p1[i],pp1[x],ps))
+                    ans.append((p1[i][0],pp1[x],ps))
                 x += 1
             i += 1
             j += 1
