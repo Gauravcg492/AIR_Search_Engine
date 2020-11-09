@@ -1,4 +1,5 @@
 import nltk
+import math
 
 def posintersect(p1,p2,k):
     ans=[]
@@ -56,7 +57,6 @@ def posinter_over_invindex(invindex,query, wildcard_index, champion =True):
         index = 1
     d = {}
     tokens = nltk.word_tokenize(query)
-    doclim=10
     q = []
     itr = 0
     enum = list(query.split())
@@ -89,6 +89,30 @@ def merge_docs(inv_ind, terms, champion_list = False):
         for doc_data in inv_ind[term][index]:
             doc_set.add(doc_data[0])
     return sorted(doc_set)
+
+def merge_terms(term1_index, term2_index):
+    new_postings_list = []
+    i = j = 0
+    t1_len = len(term1_index[1])
+    t2_len = len(term2_index[1])
+    N = 94858
+    while(i < t1_len and j < t2_len):
+        if term1_index[1][i][0] < term2_index[1][j][0]:
+            new_postings_list.append(term1_index[1][i])
+            i += 1
+        elif term1_index[1][i][0] > term2_index[1][j][0]:
+            new_postings_list.append(term2_index[1][j])
+            j += 1
+        else:
+            doc_id = term1_index[1][i][0]
+            position_list = sorted(term1_index[1][i][1] + term2_index[1][j][1])
+            tf = 1 + math.log(len(position_list), 10)
+            new_postings_list.append(doc_id, position_list, tf)
+    sorted_list = sorted(new_postings_list, key=lambda x: x[2], reverse=True)
+    new_champion_list = sorted(sorted_list[:20])
+    df = len(new_postings_list)
+    idf = math.log(N/df, 10)
+    return (idf, new_postings_list, new_champion_list)     
 
 def kgr(kg1,kg2):
     ans = []
