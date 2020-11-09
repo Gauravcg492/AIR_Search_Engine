@@ -2,7 +2,7 @@ import json
 import pandas as pd
 
 def get_inv_index():
-	f = open("../inv_index.json"):
+	f = open("../inv_index.json")
 	inv_index = json.load(f)
 	return inv_index
 
