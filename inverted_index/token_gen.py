@@ -9,18 +9,10 @@ lemmatizer = WordNetLemmatizer()
 
 stop_words = stopwords.words('english').copy()
 stop_words.extend(["'re", "n't"])
-pos_counter = 0
+
 
 dataset = "../../dataset/TelevisionNews/"
 outfile = open("../../temp-data/term_doc_id_pos", "w") #intermediate
-
-def increment_pos():
-	global pos_counter
-	pos_counter+=1
-
-def reset_pos():
-	global pos_counter
-	pos_counter =0
 
 # function to convert nltk tag to wordnet tag
 def nltk_tag_to_wordnet_tag(nltk_tag):
@@ -55,12 +47,8 @@ def normalize(token):
 	token = token.lower() #convert to lowercase for uniformity
 	if(token.startswith("'")):
 		token=token[1:]
-	if(token=="'s" or (str(token) in string.punctuation)):
-		#ignoring punctuation tokens
-		return ''
-	if (str(token) in stop_words):
-		# removing stop words but retaining their position
-		increment_pos()
+	if(token=="'s" or (str(token) in string.punctuation) or (str(token) in stop_words)):
+		#ignoring punctuation tokens, stop words
 		return ''
 	token = lemmatize(token) 
 	return token
@@ -88,7 +76,7 @@ def driver():
 					curr_doc_id = file.strip('.csv')+ "_"+str(row_no)
 					curr_doc_url= row.pop(0)
 					for el in row:
-						reset_pos()
+						pos_counter = 0
 						col_no = row.index(el)
 						if(col_no==4):
 							# we won't be tokenizing "IAPreviewThumb" entries
@@ -100,7 +88,7 @@ def driver():
 							if(token ==''):
 								continue
 							outfile.write(token +","+ str(curr_doc_id) + "," + str(pos_counter) + "," + zones[col_no].lower() + "\n")
-							increment_pos()
+							pos_counter+=1
 
 
 if __name__ == "__main__": 

@@ -11,7 +11,7 @@
 	``` 
 	- sorts the (term, doc-id, pos, zone) quadruplets in that order.
 3. ```cd ../AIR_Search_Engine/inverted_index``` 
-	Open ``` inverted-index.ipynb``` in Jupyter Notebook and run all the cells
+	Run ```jupyter notebook inverted_index.ipynb``` in Jupyter Notebook and run all the cells
 	- generates ``` inv_index.json ``` in ```Project```
 	- takes long to execute
 	- Format of inverted_index:
