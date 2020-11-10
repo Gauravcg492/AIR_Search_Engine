@@ -2,21 +2,19 @@ import nltk
 import string
 from nltk.corpus import stopwords
 # import lemmatize, tokenize and inverted_index_generator
-from kgram import Kgram
 from cosine_scoring import cosine_scoring
 from inverted_index import token_gen
 from intersect import intersect
-from read_inv_index import get_inv_index
+from read_inv_index import get_record
 
-class search:
-    def __init__(self):
+class Search:
+    def __init__(self, index, no_docs):
         # for preprocessing data
         # self.inv_ind = {}
-        self.inv_ind = get_inv_index()
+        self.inv_ind = index.inv_ind
         # pass inv_ind to kgram
-        self.kgram = Kgram(self.inv_ind)
-        self.k =10
-        pass
+        self.kgram = index.kgram
+        self.k = no_docs
     
     # Function which intersects the terms in query and then score the intersected documents
     def intersect_score(self):
@@ -26,6 +24,9 @@ class search:
         return cosine_scoring.get_cosine_score(self.inv_ind, self.query_terms, doc_list)
     
     # Function which finds cosine score from champion list of the queries
+    def cosine_score_all(self, champion=True):
+        doc_list = intersect.merge_docs(self.inv_ind, self.query_terms, self.wildcard_index, champion)
+        return cosine_scoring.get_cosine_score(self.inv_ind, self.query_terms, doc_list)
 
     def spelling_correction(self, term):
         term_bi_len = len(term)-1
@@ -52,11 +53,22 @@ class search:
         kdict = self.kgram.get_kgram_query(tquery)
         return intersect.kgramintersect(kdict,prefix)
         
+    def merge_terms(self, wild_terms, term):
+        if term not in self.wildcard_index:
+            self.wildcard_index[term] = self.inv_ind[wild_terms[0]]
+            for wild_term in wild_terms[1:]:
+                self.wildcard_index[term] = intersect.merge_terms(self.wildcard_index[term], self.inv_ind[wild_term])
+
+    def return_documents(self, scores):
+        result = []
+        for score in reversed(scores[:20]):
+            result.append(get_record(score[1]))
+        return result
 
     def search(self, query_text):
         query_terms = []
         position = -1
-        wildcard_index = {} #for wildcard query term
+        self.wildcard_index = {} #for wildcard query term
         for term in nltk.word_tokenize(query_text):
             term = token_gen.normalize(term)
             position+=1
@@ -66,17 +78,26 @@ class search:
                 term = self.spelling_correction(term)
             if('*' in term):
                 # TODO
-                wildcard_terms = get_wild_query(term) #get all terms for mon*
-                wildcard_index = merge_terms() #should give new idf, champion list, zones list for wildcard query(eg:- 'mon*')
+                wildcard_terms = self.get_wild_query(term) #get all terms for mon*
+                self.merge_terms(wildcard_terms, term) #should give new idf, champion list, zones list for wildcard query(eg:- 'mon*')
 
 
 
             query_terms.append(term)
 
-        self.wildcard_index = wildcard_index
         self.query_terms = query_terms
         self.query = ' '.join(query_terms)
         cosine_score1=self.intersect_score()
-        if(len(cosine_score1)> k):
-            for score in cosine_score1[::-1]:
-                doc_id= score[1]
+        if(len(cosine_score1)> self.k):
+            result = self.return_documents(cosine_score1)
+        else:
+            cosine_score2 = self.cosine_score_all()
+            total_cosine_score = sorted(set(cosine_score1 + cosine_score2))
+            if len(total_cosine_score) > self.k:
+                result = self.return_documents(total_cosine_score)
+            else:
+                cosine_score3 = self.cosine_score_all(champion=False)
+                total_cosine_score = sorted(set(total_cosine_score + cosine_score3))
+                result = self.return_documents(total_cosine_score)
+        return result
+            

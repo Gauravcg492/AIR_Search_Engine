@@ -1,14 +1,17 @@
 import flask
-from search import search
-search = search()
+from search import Search
+from index import Index
+index = Index()
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
 @app.route('/', methods=['POST'])
 def search_engine():
-	query=request.form.get("query")
-	search.search(query)
+	query = flask.request.form.get("query")
+	no_docs = 10
+	search = Search(index, no_docs)
+	result = search.search(query)
 
 	
 
