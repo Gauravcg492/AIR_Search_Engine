@@ -91,7 +91,6 @@ def driver():
 						reset_pos()
 						col_no = row.index(el)
 						if(col_no==4):
-							#print(el)
 							# we won't be tokenizing "IAPreviewThumb" entries
 							tokens = [el]
 						else:
