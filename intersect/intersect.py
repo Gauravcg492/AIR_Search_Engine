@@ -137,13 +137,7 @@ def kgramintersect(kgramdict,pref):
         orig += next(itr)[1]
     remlst = []
     for i in range(len(res)):
-        if orig not in res[i]:
-            remlst.append(res[i])
-            continue
-        elif pref and orig != res[i][:len(orig)]:
-            remlst.append(res[i])
-            continue
-        elif not pref and orig != res[i][-len(orig):]:
+        if orig not in res[i] or (pref and orig != res[i][:len(orig)]) or (not pref and orig != res[i][-len(orig):]):
             remlst.append(res[i])
             continue
     for rem in remlst:
