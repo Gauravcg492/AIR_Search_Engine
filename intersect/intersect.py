@@ -26,7 +26,7 @@ def posintersect(p1,p2,k):
                 while l and abs(l[0]-pp1[x])>k:
                     l.pop(0)
                 for ps in l:
-                    ans.append((p1[i][0],pp1[x],ps))
+                    ans.append((p1[i][0],ps))
                 x += 1
             i += 1
             j += 1
@@ -41,13 +41,13 @@ def posintersect(p1,p2,k):
         i=0
         for nt in nans:
             if t[0] == nt[0]:
-                if t[2] not in nt[1]:
-                    nt[1].append(t[2])
+                if t[1] not in nt[1]:
+                    nt[1].append(t[1])
                     break
             else:
                 i += 1
         if i == lgth:
-            nans.append((t[0],[t[2]],0))
+            nans.append((t[0],[t[1]]))
     del ans
     return nans
 
@@ -143,13 +143,7 @@ def kgramintersect(kgramdict,pref):
         orig += next(itr)[1]
     remlst = []
     for i in range(len(res)):
-        if orig not in res[i]:
-            remlst.append(res[i])
-            continue
-        elif pref and orig != res[i][:len(orig)]:
-            remlst.append(res[i])
-            continue
-        elif not pref and orig != res[i][-len(orig):]:
+        if orig not in res[i] or (pref and orig != res[i][:len(orig)]) or (not pref and orig != res[i][-len(orig):]):
             remlst.append(res[i])
             continue
     for rem in remlst:
