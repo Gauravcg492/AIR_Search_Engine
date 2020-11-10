@@ -11,7 +11,7 @@ def search_engine():
 	query = flask.request.form.get("query")
 	no_docs = 10
 	search = Search(index, no_docs)
-	search.search(query)
+	result = search.search(query)
 
 	
 

@@ -5,6 +5,7 @@ from nltk.corpus import stopwords
 from cosine_scoring import cosine_scoring
 from inverted_index import token_gen
 from intersect import intersect
+from read_inv_index import get_record
 
 class Search:
     def __init__(self, index, no_docs):
@@ -23,6 +24,9 @@ class Search:
         return cosine_scoring.get_cosine_score(self.inv_ind, self.query_terms, doc_list)
     
     # Function which finds cosine score from champion list of the queries
+    def cosine_score_all(self, champion=True):
+        doc_list = intersect.merge_docs(self.inv_ind, self.query_terms, self.wildcard_index, champion)
+        return cosine_scoring.get_cosine_score(self.inv_ind, self.query_terms, doc_list)
 
     def spelling_correction(self, term):
         term_bi_len = len(term)-1
@@ -55,6 +59,12 @@ class Search:
             for wild_term in wild_terms[1:]:
                 self.wildcard_index[term] = intersect.merge_terms(self.wildcard_index[term], self.inv_ind[wild_term])
 
+    def return_documents(self, scores):
+        result = []
+        for score in reversed(scores[:20]):
+            result.append(get_record(score[1]))
+        return result
+
     def search(self, query_text):
         query_terms = []
         position = -1
@@ -79,8 +89,15 @@ class Search:
         self.query = ' '.join(query_terms)
         cosine_score1=self.intersect_score()
         if(len(cosine_score1)> self.k):
-            for score in cosine_score1[::-1]:
-                # send output
-                pass
+            result = self.return_documents(cosine_score1)
         else:
-            pass
+            cosine_score2 = self.cosine_score_all()
+            total_cosine_score = sorted(set(cosine_score1 + cosine_score2))
+            if len(total_cosine_score) > self.k:
+                result = self.return_documents(total_cosine_score)
+            else:
+                cosine_score3 = self.cosine_score_all(champion=False)
+                total_cosine_score = sorted(set(total_cosine_score + cosine_score3))
+                result = self.return_documents(total_cosine_score)
+        return result
+            
