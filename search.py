@@ -18,9 +18,9 @@ class Search:
     
     # Function which intersects the terms in query and then score the intersected documents
     def intersect_score(self):
-        doc_list = intersect.posinter_over_invindex(self.inv_ind, self.query, self.wildcard_index)
+        doc_list = intersect.posinter_over_invindex(self.inv_ind, self.query_terms, self.wildcard_index)
         if(doc_list<self.k):
-            doc_list = intersect.posinter_over_invindex(self.inv_ind, self.query, self.wildcard_index, False)
+            doc_list = intersect.posinter_over_invindex(self.inv_ind, self.query_terms, self.wildcard_index, False)
         return cosine_scoring.get_cosine_score(self.inv_ind, self.query_terms, doc_list)
     
     # Function which finds cosine score from champion list of the queries
@@ -86,7 +86,6 @@ class Search:
             query_terms.append(term)
 
         self.query_terms = query_terms
-        self.query = ' '.join(query_terms)
         cosine_score1=self.intersect_score()
         if(len(cosine_score1)> self.k):
             result = self.return_documents(cosine_score1)
