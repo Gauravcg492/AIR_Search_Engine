@@ -80,14 +80,18 @@ def posinter_over_invindex(invindex,query, wildcard_index, champion =True):
         p1 = posintersect(p1,p3,k)
     return list(set(map(lambda l:l[0],p1)))
     
-def merge_docs(inv_ind, terms, champion_list = False):
+def merge_docs(inv_ind, terms, wildcard_index, champion_list = False):
     doc_set = set()
     index = 1
     if champion_list:
         index = 2
     for term in terms:
-        for doc_data in inv_ind[term][index]:
-            doc_set.add(doc_data[0])
+        if '*' in term:
+            for doc_data in wildcard_index[term][index]:
+                doc_set.add(doc_data[0])
+        else:
+            for doc_data in inv_ind[term][index]:
+                doc_set.add(doc_data[0])
     return sorted(doc_set)
 
 def merge_terms(term1_index, term2_index):
