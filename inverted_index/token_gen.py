@@ -7,12 +7,10 @@ from nltk.corpus import wordnet
 from nltk.corpus import stopwords
 lemmatizer = WordNetLemmatizer()
 
-stop_words = stopwords.words('english').copy()
-stop_words.extend(["'re", "n't"])
 
 
-dataset = "../dataset/TelevisionNews/"
-outfile = open("../temp-data/term_doc_id_pos", "w") #intermediate
+
+
 
 # function to convert nltk tag to wordnet tag
 def nltk_tag_to_wordnet_tag(nltk_tag):
@@ -42,6 +40,8 @@ def lemmatize(token):
 			return lemmatized_word
 
 def normalize(token):
+	stop_words = stopwords.words('english').copy()
+	stop_words.extend(["'re", "n't"])
 	token=token.replace('-','')
 	token=token.replace(',', '')
 	token = token.lower() #convert to lowercase for uniformity
@@ -54,6 +54,8 @@ def normalize(token):
 	return token
 
 def driver():
+	dataset = "../dataset/TelevisionNews/"
+	outfile = open("../temp-data/term_doc_id_pos", "w") #intermediate
 	n = 0
 	count= 0
 	for file in os.listdir(dataset):

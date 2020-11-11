@@ -10,12 +10,10 @@ def get_cosine_score(inv_ind, query_terms, doc_list):
     idf_vector = np.array([inv_ind[term][0] for term in query_set])
     query_tf_vector = np.array([query_terms.count(term) for term in query_set])
     query_weights = query_tf_vector * idf_vector
-    print(doc_list)
     for doc_id in doc_list:
         doc_tf_vector = []
         for term in query_set:
-            print(inv_ind[term][1], doc_id )
-            ind = bisect.bisect_left(inv_ind[term][1], (doc_id,))
+            ind = bisect.bisect_left(inv_ind[term][1], [doc_id,])
             if ind != len(inv_ind[term][1]) and inv_ind[term][1][ind][0] == doc_id:
                 doc_tf_vector.append(inv_ind[term][1][ind][2])
             else:
