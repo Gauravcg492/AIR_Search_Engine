@@ -1,22 +1,22 @@
 # AIR_Search_Engine
 Search Engine developed as part of Algorithm for Information Retrieval (UE17CS412) course.
 
-## Steps:
+# Steps:
 Enter the directories in the order mentioned below and follow the commands in their README's
-1. Construct inverted index:
+### 1. Construct inverted index:
  - If you want to generate inverted index from scratch [OPTIONAL]
  	- Download [Kaggle Dataset](https://www.kaggle.com/amritvirsinghx/environmental-news-nlp-dataset) and store it as per the directory structure in Notes
  	- ```cd AIR_Search_Engine/inverted-index```
  	- open the README and follow the instructions
  - Else, already generated inverted index can be downloaded from [here](https://drive.google.com/file/d/185c_fsIJvuBvvVWvKUgybYes_5xHkdQX/view?usp=sharing) 
- - Ensure that ```inv_index.json``` outside the ```AIR_Search_Engine``` directory
+ - Ensure that ```inv_index.json``` is outside the ```AIR_Search_Engine``` directory
  - This includes handling of stop words, lemmatization
 
-3. Start the application:
+### 2. Start the application:
  - ``` python3 api.py ```
  - wait until the "Done Indexing" message shows on your terminal
 
-4. Pass the query
+### 3. Pass the query
  - Open Postman and create a "GET" request with the URL ```127.0.0.1:8080?q="climate change"```
  - Replace "climate change" with a query/ wildcard query of your choice
 
