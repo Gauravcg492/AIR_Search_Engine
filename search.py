@@ -19,7 +19,7 @@ class Search:
     # Function which intersects the terms in query and then score the intersected documents
     def intersect_score(self):
         doc_list = intersect.posinter_over_invindex(self.inv_ind, self.query_terms, self.wildcard_index)
-        if(doc_list<self.k):
+        if(len(doc_list)<self.k):
             doc_list = intersect.posinter_over_invindex(self.inv_ind, self.query_terms, self.wildcard_index, False)
         return cosine_scoring.get_cosine_score(self.inv_ind, self.query_terms, doc_list)
     

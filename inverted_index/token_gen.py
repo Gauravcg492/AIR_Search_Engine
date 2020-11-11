@@ -11,8 +11,8 @@ stop_words = stopwords.words('english').copy()
 stop_words.extend(["'re", "n't"])
 
 
-dataset = "../../dataset/TelevisionNews/"
-outfile = open("../../temp-data/term_doc_id_pos", "w") #intermediate
+dataset = "../dataset/TelevisionNews/"
+outfile = open("../temp-data/term_doc_id_pos", "w") #intermediate
 
 # function to convert nltk tag to wordnet tag
 def nltk_tag_to_wordnet_tag(nltk_tag):

@@ -30,7 +30,7 @@ class Kgram:
                     kgram_ind[bi] = []
                 # Check if term is already added for this bigram
                 ind = bisect.bisect_left(kgram_ind[bi], term)
-                if ind == len(kgram_ind[bi]) or kgram_ind[unigram][ind] != term:
+                if ind == len(kgram_ind[bi]) or kgram_ind[bi][ind] != term:
                     # Add term in the right position
                     bisect.insort(kgram_ind[bi], term)
         self.kgram_ind = kgram_ind

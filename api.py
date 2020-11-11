@@ -8,7 +8,7 @@ print("Done Indexing")
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET'])
 def search_engine():
 	query = flask.request.args.get("q")
 	no_docs = 10
