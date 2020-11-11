@@ -77,7 +77,7 @@ def posinter_over_invindex(invindex,query, wildcard_index, champion =True):
         p3 =  invindex[s[i]][index] if ('*' not in s[i]) else wildcard_index[s[i]][index]
         #k = abs(s[i][1] - s[i-1][1])
         p1 = posintersect(p1,p3,1)
-    return list(set(map(lambda l:l[0],p1)))
+    return list(map(lambda l:l[0],p1))
     
 def merge_docs(inv_ind, terms, wildcard_index, champion_list = False):
     doc_set = set()
@@ -144,7 +144,6 @@ def kgramintersect(kgramdict,pref):
     for i in range(len(res)):
         if orig not in res[i] or (pref and orig != res[i][:len(orig)]) or (not pref and orig != res[i][-len(orig):]):
             remlst.append(res[i])
-            continue
     for rem in remlst:
         res.remove(rem)
     del rem
