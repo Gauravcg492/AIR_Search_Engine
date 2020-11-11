@@ -54,8 +54,8 @@ def normalize(token):
 	return token
 
 def driver():
-	dataset = "../dataset/TelevisionNews/"
-	outfile = open("../temp-data/term_doc_id_pos", "w") #intermediate
+	dataset = "../../dataset/TelevisionNews/"
+	outfile = open("../../temp-data/term_doc_id_pos", "w") #intermediate
 	n = 0
 	count= 0
 	for file in os.listdir(dataset):
