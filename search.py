@@ -61,7 +61,8 @@ class Search:
 
     def return_documents(self, scores):
         result = []
-        for score in reversed(scores[:20]):
+        temp = scores[::-1]
+        for score in temp[:self.k]):
             result.append(get_record(score[1]))
         return result
 
