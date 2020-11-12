@@ -18,12 +18,12 @@ def posintersect(p1,p2,k):
             lpp2 = len(pp2)
             while x<lpp1:
                 while y<lpp2:
-                    if abs(pp1[x]-pp2[y]) <=k:
+                    if pp2[y]-pp1[x]==k:
                         l.append(pp2[y])
                     elif pp2[y]>pp1[x]:
                         break
                     y += 1
-                while l and abs(l[0]-pp1[x])>k:
+                while l and l[0]-pp1[x]>k:
                     l.pop(0)
                 for ps in l:
                     ans.append((p1[i][0],ps))
@@ -56,27 +56,19 @@ def posinter_over_invindex(invindex,query, wildcard_index, champion =True):
     if not champion :
         index = 1
     d = {}
-    '''tokens = nltk.word_tokenize(query)
-    q = []
-    itr = 0
-    enum = list(query.split())
-    for token in tokens:
-        while itr < len(enum):
-            if token == enum[itr]:
-                q.append((token,itr))
-                itr += 1
-                break
-            else:
-                itr += 1'''
-    for t in query:
-        d[t] = len(invindex[t])
+    q = enumerate(query)
+    for t in q:
+        d[t] = len(invindex[t[1]])
     s = sorted(d,key=lambda x:d[x])
+    del q
     del d
-    p1 = invindex[s[0]][index] if ('*' not in s[0]) else wildcard_index[s[0]][index]
+    p1 = invindex[s[0][1]][index] if ('*' not in s[0][1]) else wildcard_index[s[0][1]][index]
     for i in range(1,len(s)):
-        p3 =  invindex[s[i]][index] if ('*' not in s[i]) else wildcard_index[s[i]][index]
-        #k = abs(s[i][1] - s[i-1][1])
-        p1 = posintersect(p1,p3,1)
+        p3 =  invindex[s[i][1]][index] if ('*' not in s[i][1]) else wildcard_index[s[i][1]][index]
+        if s[i][0] > s[i-1][0]:
+            p1 = posintersect(p1,p3,s[i][0]-s[i-1][0])
+        else:
+            p1 = posintersect(p3,p1,s[i-1][0]-s[i][0])
     return list(map(lambda l:l[0],p1))
     
 def merge_docs(inv_ind, terms, wildcard_index, champion_list = False):
