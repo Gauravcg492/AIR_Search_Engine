@@ -1,7 +1,7 @@
 import nltk
 import math
 
-def posintersect(p1,p2,k):
+def posintersect(p1,p2):
     ans=[]
     i = 0
     j = i
@@ -18,12 +18,12 @@ def posintersect(p1,p2,k):
             lpp2 = len(pp2)
             while x<lpp1:
                 while y<lpp2:
-                    if pp2[y]-pp1[x]==k:
+                    if pp2[y]-pp1[x]==1:
                         l.append(pp2[y])
                     elif pp2[y]>pp1[x]:
                         break
                     y += 1
-                while l and l[0]-pp1[x]>k:
+                while l and l[0]-pp1[x]>1:
                     l.pop(0)
                 for ps in l:
                     ans.append((p1[i][0],ps))
@@ -55,20 +55,10 @@ def posinter_over_invindex(invindex,query, wildcard_index, champion =True):
     index = 2 #champion
     if not champion :
         index = 1
-    d = {}
-    q = enumerate(query)
-    for t in q:
-        d[t] = invindex[t[1]][0] if ('*' not in t[1]) else wildcard_index[t[1]][0]
-    s = sorted(d,key=lambda x:d[x],reverse=True)
-    del q
-    del d
-    p1 = invindex[s[0][1]][index] if ('*' not in s[0][1]) else wildcard_index[s[0][1]][index]
-    for i in range(1,len(s)):
-        p3 =  invindex[s[i][1]][index] if ('*' not in s[i][1]) else wildcard_index[s[i][1]][index]
-        if s[i][0] > s[i-1][0]:
-            p1 = posintersect(p1,p3,s[i][0]-s[i-1][0])
-        else:
-            p1 = posintersect(p3,p1,s[i-1][0]-s[i][0])
+    p1 = invindex[query[0]][index] if ('*' not in query[0]) else wildcard_index[query[0]][index]
+    for i in range(1,len(query)):
+        p3 =  invindex[query[i]][index] if ('*' not in query[i]) else wildcard_index[query[i]][index]
+        p1 = posinter_over_invindex(p1,p3)
     return list(map(lambda l:l[0],p1))
     
 def merge_docs(inv_ind, terms, wildcard_index, champion_list = False):
