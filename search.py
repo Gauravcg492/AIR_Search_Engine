@@ -21,12 +21,12 @@ class Search:
         doc_list = intersect.posinter_over_invindex(self.inv_ind, self.query_terms, self.wildcard_index)
         if(len(doc_list)<self.k):
             doc_list = intersect.posinter_over_invindex(self.inv_ind, self.query_terms, self.wildcard_index, False)
-        return cosine_scoring.get_cosine_score(self.inv_ind, self.query_terms, doc_list)
+        return cosine_scoring.get_cosine_score(self.inv_ind, self.wildcard_index, self.query_terms, doc_list)
     
     # Function which finds cosine score from champion list of the queries
     def cosine_score_all(self, champion=True):
         doc_list = intersect.merge_docs(self.inv_ind, self.query_terms, self.wildcard_index, champion)
-        return cosine_scoring.get_cosine_score(self.inv_ind, self.query_terms, doc_list)
+        return cosine_scoring.get_cosine_score(self.inv_ind, self.wildcard_index, self.query_terms, doc_list)
 
     def spelling_correction(self, term):
         term_bi_len = len(term)-1
