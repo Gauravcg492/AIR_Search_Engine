@@ -101,27 +101,11 @@ def merge_terms(term1_index, term2_index):
     idf = math.log(N/df, 10)
     return (idf, new_postings_list, new_champion_list)     
 
-def kgr(kg1,kg2):
-    ans = []
-    for term in kg1:
-        if term in kg2:
-            ans.append(term)
-            kg2.remove(term)
-    for term in kg2:
-        if term in kg1:
-            ans.append(term)
-            kg1.remove(term)
-    return ans
-
-def kgramintersect(kgramdict,pref):
+def kgramintersect(kgramdict,orig,pref):
     itr = iter(kgramdict)
     res = kgramdict[next(itr)]
     for _ in range(len(kgramdict)-1):
-        res = kgr(res,kgramdict[next(itr)])
-    itr = iter(kgramdict)
-    orig = next(itr)
-    for _ in range(len(kgramdict)-2):
-        orig += next(itr)[1]
+        res = list(set(res) & set(kgramdict[next(itr)]))
     remlst = []
     for i in range(len(res)):
         if orig not in res[i] or (pref and orig != res[i][:len(orig)]) or (not pref and orig != res[i][-len(orig):]):
