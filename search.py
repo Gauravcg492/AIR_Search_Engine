@@ -61,9 +61,9 @@ class Search:
 
     def return_documents(self, scores):
         result = []
-        temp = scores#[::-1]
-        for score in temp:
-            result.append(get_record(score[1], score[0]))
+        temp = scores[::-1]
+        for score in temp[:self.k]:
+            result.append(get_record(score[1],score[0]))
         return result
 
     def search(self, query_text):
@@ -79,7 +79,6 @@ class Search:
                 # TODO
                 wildcard_terms = self.get_wild_query(term) #get all terms for mon*
                 self.merge_terms(wildcard_terms, term) #should give new idf, champion list, zones list for wildcard query(eg:- 'mon*')
-                print(wildcard_terms)
             elif term not in self.inv_ind:
                 term = self.spelling_correction(term)
 
