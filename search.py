@@ -51,7 +51,7 @@ class Search:
         prefix = True if term[-1] == '*' else False
         tquery = term.replace('*','')
         kdict = self.kgram.get_kgram_query(tquery)
-        return intersect.kgramintersect(kdict,prefix)
+        return intersect.kgramintersect(kdict,tquery,prefix)
         
     def merge_terms(self, wild_terms, term):
         if term not in self.wildcard_index:
@@ -84,7 +84,7 @@ class Search:
 
             query_terms.append(term)
 
-        self.query_terms = query_terms
+        self.query_terms = query_terms[1:]
         cosine_score1=self.intersect_score()
         if(len(cosine_score1)> self.k):
             result = self.return_documents(cosine_score1)
