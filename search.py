@@ -59,26 +59,11 @@ class Search:
             for wild_term in wild_terms[1:]:
                 self.wildcard_index[term] = intersect.merge_terms(self.wildcard_index[term], self.inv_ind[wild_term])
 
-
-
-
-
-
-
-
-
-
-
     def return_documents(self, scores):
         result = []
         temp = scores#[::-1]
         for score in temp:
             result.append(get_record(score[1], score[0]))
-        for score in reversed(scores[:20]):
-            result.append(get_record(score[1]))
-        temp = scores[::-1]
-        for score in temp[:self.k]:
-            result.append(get_record(score[1]))
         return result
 
     def search(self, query_text):
