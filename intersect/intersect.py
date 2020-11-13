@@ -58,7 +58,7 @@ def posinter_over_invindex(invindex,query, wildcard_index, champion =True):
     d = {}
     q = enumerate(query)
     for t in q:
-        d[t] = len(invindex[t[1]])
+        d[t] = len(invindex[t[1]]) if ('*' not in t[1]) else len(wildcard_index[t[1]])
     s = sorted(d,key=lambda x:d[x])
     del q
     del d
