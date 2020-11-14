@@ -95,6 +95,12 @@ def merge_terms(term1_index, term2_index):
             new_postings_list.append([doc_id, position_list, tf])
             i += 1
             j += 1
+    while(i < t1_len):
+        new_postings_list.append(term1_index[1][i])
+        i += 1
+    while(j < t2_len):
+        new_postings_list.append(term2_index[1][j])
+        j += 1
     sorted_list = sorted(new_postings_list, key=lambda x: x[2], reverse=True)
     new_champion_list = sorted(sorted_list[:20])
     df = len(new_postings_list)
