@@ -19,6 +19,7 @@ class Search:
     # Function which intersects the terms in query and then score the intersected documents
     def intersect_doc_list(self):
         doc_list = intersect.posinter_over_invindex(self.inv_ind, self.query_terms, self.wildcard_index)
+        print("Inside intersection doc list:", len(doc_list))
         if(len(doc_list)<self.k):
             doc_list = intersect.posinter_over_invindex(self.inv_ind, self.query_terms, self.wildcard_index, False)
         #return cosine_scoring.get_cosine_score(self.inv_ind, self.wildcard_index, self.query_terms, doc_list[:20])
@@ -75,9 +76,10 @@ class Search:
         #position = -1
         self.wildcard_index = {} #for wildcard query term
         for term in nltk.word_tokenize(query_text):
+            print(term)
             term = token_gen.normalize(term)
             #position+=1
-            if(term ==''):
+            if(term =='' or term == '``'):
                 continue
             if('*' in term):
                 wildcard_terms = self.get_wild_query(term) #get all terms for mon*
@@ -86,8 +88,8 @@ class Search:
                 term = self.spelling_correction(term)
 
             query_terms.append(term)
-
-        self.query_terms = query_terms # Why was it query_term[1:] ?
+        print("Query Terms:", query_terms)
+        self.query_terms = query_terms 
         '''
         cosine_score1=self.intersect_score()
         if(len(cosine_score1)> self.k):
@@ -102,10 +104,15 @@ class Search:
                 total_cosine_score = sorted(set(total_cosine_score + cosine_score3))
                 result = self.return_documents(total_cosine_score)
         '''
+        print("Calling Intersection")
         doc_list = self.intersect_doc_list()
+        print("Doc list:", len(doc_list))
         if len(doc_list) < self.k:
+            print("Calling Merge")
             doc_list = self.union_doc_list()
+        print("Total documents:", len(doc_list))
         cosine_scores = cosine_scoring.get_cosine_score(self.inv_ind, self.wildcard_index, self.query_terms, doc_list)
+        print("Cosine Scoring Done")
         result = self.return_documents(cosine_scores)
         return result
             

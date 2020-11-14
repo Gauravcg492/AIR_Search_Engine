@@ -10,8 +10,9 @@ app.config["DEBUG"] = True
 
 @app.route('/', methods=['GET'])
 def search_engine():
-	query = flask.request.args.get("q")
+	query = str(flask.request.args.get("q"))
 	no_docs = 10
+	print("Query:", query)
 	search = Search(index, no_docs)
 	result = search.search(query)
 	return jsonify(result)

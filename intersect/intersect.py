@@ -58,7 +58,9 @@ def posinter_over_invindex(invindex,query, wildcard_index, champion =True):
     p1 = invindex[query[0]][index] if ('*' not in query[0]) else wildcard_index[query[0]][index]
     for i in range(1,len(query)):
         p3 =  invindex[query[i]][index] if ('*' not in query[i]) else wildcard_index[query[i]][index]
+        print("p1 len and p3 len", len(p1), len(p3))
         p1 = posintersect(p1,p3)
+    print("Returning Documents After Intersection")
     return list(map(lambda l:l[0],p1))
     
 def merge_docs(inv_ind, terms, wildcard_index, champion_list = False):
