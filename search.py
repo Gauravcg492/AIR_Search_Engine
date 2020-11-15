@@ -48,7 +48,7 @@ class Search:
             if jaccard > max_jaccard:
                 max_jaccard = jaccard
                 max_term = t
-        print("All terms:", term_count)
+        #print("All terms:", term_count)
         return max_term
 
     def get_wild_query(self, term):
