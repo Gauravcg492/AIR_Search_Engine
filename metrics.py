@@ -4,24 +4,31 @@ our_URL_set = set()
 
 def get_tp(benchmark_set, results_set):
 	#retrieved and relevant
-	tp  = len(benchmark_set.intersection(results_set))
+	tp_set = benchmark_set.intersection(results_set)
+	#print("TP set: ", tp_set)
+	tp  = len(tp_set)
 	return tp
 
 def get_fp(benchmark_set, results_set):
 	#retrieved, but not relevant
-	fp = len(results_set.difference(benchmark_set))
+	fp_set = results_set.difference(benchmark_set)
+	#print("FP set: ", fp_set)
+	fp  = len(fp_set)
 	return fp
 
 def get_fn(benchmark_set, results_set):
 	#not retrieved, but relevant
-	fn = len(benchmark_set.difference(results_set))
+	fn_set = benchmark_set.difference(results_set)
+	#print("FN set: ", fn_set)
+	fn = len(fn_set)
 	return fn
 
 def send_ES_req(query):
 	import os
 	query = query.replace(" ", "+")
-	url = "http://localhost:9200/bbcnews/_search?q="+ query+ "&pretty"
-	cmd = 'curl -H "Content-Type: application/json" -XPOST '+url+ " > elastic_op.json"
+	url = '"http://localhost:9200/bbcnews/_search?q="'+ query+ '"&pretty"'
+	cmd = 'curl -H "Content-Type: application/json" -XPOST ' +url+ ' > elastic_op.json'
+	print(cmd)
 	try:
 		res = os.system(cmd)
 	except Exception as e:
@@ -31,7 +38,7 @@ def send_ES_req(query):
 def read_ES_json(file):
 	import json
 	try:
-		f=open(file)
+		f=open(file,'r')
 		ES_data = json.load(f)
 		for el in ES_data['hits']['hits']:
 			ES_URL_set.add(el["_source"]["URL"])
@@ -39,14 +46,29 @@ def read_ES_json(file):
 		print("Cannot read elastic search results. ", e)
 	
 def read_our_json(file):
+	import json
 	try:
-		import json
-		f=open(file)
+		f=open(file,'r')
 		data = json.load(f)
 		for el in data:
-			our_URL_set.add(el["URL"])
+			record = el[3]
+			our_URL_set.add(record["URL"])
 	except Exception as e:
 		print("Cannot read our search engine's results. ", e)
+
+def clean(files):
+	import os
+	for file in files:
+		os.remove(file)
+
+def get_ES_time():
+	try:
+		f=open("elastic_op.json")
+		ES_data = json.load(f)
+		return int(ES_data["took"])
+	except Exception as e:
+		print("Error: ", e)
+		return "NA"
 
 def get_metrics(query):
 	send_ES_req(query)
@@ -62,4 +84,4 @@ def get_metrics(query):
 		return (prec, recall, f_score)
 	except Exception as e:
 		print("Error: ",e)
-		return (0,0,0)
+		return ("NA","NA","NA")
