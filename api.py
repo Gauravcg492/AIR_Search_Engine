@@ -2,6 +2,7 @@ import flask
 from flask import jsonify
 from search import Search
 from index import Index
+import metrics
 index = Index()
 print("Done Indexing")
 
@@ -15,6 +16,9 @@ def search_engine():
 	print("Query:", query)
 	search = Search(index, no_docs)
 	result = search.search(query)
+	with open("our_op.json", "w") as outfile:  
+		json.dump(result, outfile)
+	print("Precision, Recall, F-score = ", metrics.get_metrics(query))
 	return jsonify(result)
 
 if __name__ == "__main__":
