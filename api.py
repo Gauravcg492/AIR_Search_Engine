@@ -2,8 +2,12 @@ import flask
 from flask import jsonify
 from search import Search
 from index import Index
+import json
 import metrics
-index = Index()
+
+inv_ind_path = "../inv_index.json"
+kgram_path = "../k_gram.json"
+index = Index(inv_ind_path, kgram_path)
 print("Done Indexing")
 
 app = flask.Flask(__name__)
