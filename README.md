@@ -12,13 +12,17 @@ Enter the directories in the order mentioned below and follow the commands in th
  - Ensure that ```inv_index.json``` is outside the ```AIR_Search_Engine``` directory
  - This includes handling of stop words, lemmatization
 
-### 2. Start the application:
+### 2. Run Elastic Search
+ - Follow 2. in Notes to setup Elastic Search and its indexing
+ - You can skip this step if you do not wish to see metrics
+
+### 3. Start the application:
  - ``` python3 api.py ```
  - wait until the "Done Indexing" message shows on your terminal
 
-### 3. Pass the query
- - Open Postman and create a "GET" request with the URL ```127.0.0.1:8080?q="climate change"```
- - Replace "climate change" with a query/ wildcard query of your choice
+### 4. Pass the query
+ - Open Postman and create a "GET" request with the URL ```127.0.0.1:8080?q=sunny+day```
+ - Replace "sunny+day" with a query/ wildcard query of your choice
 
 # Dependencies
 1. ```nltk```
