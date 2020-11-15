@@ -1,5 +1,6 @@
 import numpy as np
 import bisect
+import math
 
 # Function returns the cosine scores of the documents provided as a parameter(doc_list)
 # Input: Inverted Index, list of query terms, list of documents
@@ -8,7 +9,7 @@ def get_cosine_score(inv_ind, wildcard_index, query_terms, doc_list):
     cosine_scores = []
     query_set = list(set(query_terms))
     idf_vector = np.array([inv_ind[term][0] if '*' not in term else wildcard_index[term][0] for term in query_set])
-    query_tf_vector = np.array([query_terms.count(term) for term in query_set])
+    query_tf_vector = np.array([1+math.log(query_terms.count(term), 10) for term in query_set])
     query_weights = query_tf_vector * idf_vector
     for doc_id in doc_list:
         doc_tf_vector = []

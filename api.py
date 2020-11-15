@@ -15,8 +15,6 @@ def search_engine():
 	print("Query:", query)
 	search = Search(index, no_docs)
 	result = search.search(query)
-	with open("our_op.json", "w") as outfile:  
-    	json.dump(result, outfile) 
 	return jsonify(result)
 
 if __name__ == "__main__":

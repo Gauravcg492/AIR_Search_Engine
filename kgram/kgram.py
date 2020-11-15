@@ -3,15 +3,18 @@ import bisect
 
 class Kgram:
     # Initializes the class with inverted index
-    def __init__(self, inv_index):
-        self.inv_ind = inv_index
-        self.generate_kgram_inv_index()
+    def __init__(self, inv_index, kgram_ind = None):
+        self.__inv_ind = inv_index
+        if kgram_ind:
+            self.__kgram_ind = kgram_ind
+        else:
+            self.__kgram_ind = self.generate_kgram_inv_index()
     
     # Function to generate K-Gram Index from Inverted Index
     # Output {'kgram' : [term1, term2]}
     def generate_kgram_inv_index(self):
         kgram_ind = {}
-        for term in self.inv_ind.keys():
+        for term in self.__inv_ind.keys():
             # add unigrams
             unigrams = list(term)
             for unigram in unigrams:
@@ -33,7 +36,7 @@ class Kgram:
                 if ind == len(kgram_ind[bi]) or kgram_ind[bi][ind] != term:
                     # Add term in the right position
                     bisect.insort(kgram_ind[bi], term)
-        self.kgram_ind = kgram_ind
+        return kgram_ind
     
     # Function for getting kgram entries of the query_term provided
     # Input query_term Ex: 'apple'
@@ -44,8 +47,8 @@ class Kgram:
             unigrams = list(query_term)
             for unigram in unigrams:
                 if unigram not in kgram_query:
-                    if unigram in self.kgram_ind:
-                        kgram_query[unigram] = self.kgram_ind[unigram].copy()
+                    if unigram in self.__kgram_ind:
+                        kgram_query[unigram] = self.__kgram_ind[unigram].copy()
                     else:
                         kgram_query[unigram] = []
         
@@ -53,8 +56,11 @@ class Kgram:
         for bigram in bigrams:
             bi = ''.join(bigram)
             if bi not in kgram_query:
-                if bi in self.kgram_ind:
-                    kgram_query[bi] = self.kgram_ind[bi].copy()
+                if bi in self.__kgram_ind:
+                    kgram_query[bi] = self.__kgram_ind[bi].copy()
                 else:
                     kgram_query[bi] = []
         return kgram_query
+    
+    def get_kgram_index(self):
+        return self.__kgram_ind

@@ -104,7 +104,7 @@ def merge_terms(term1_index, term2_index):
         new_postings_list.append(term2_index[1][j])
         j += 1
     sorted_list = sorted(new_postings_list, key=lambda x: x[2], reverse=True)
-    new_champion_list = sorted(sorted_list[:20])
+    new_champion_list = sorted(sorted_list[:100])
     df = len(new_postings_list)
     idf = math.log(N/df, 10)
     return (idf, new_postings_list, new_champion_list)     

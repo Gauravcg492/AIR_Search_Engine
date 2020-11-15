@@ -1,10 +1,19 @@
 import json
 import pandas as pd
+import os
 
-def get_inv_index():
-	f = open("../inv_index.json")
+def get_index(path):
+	f = open(path)
 	inv_index = json.load(f)
 	return inv_index
+
+def is_file_exists(path):
+	return os.path.exists(path)
+
+def write_index(path, index):
+	with open(path, 'w') as outfile:
+		json.dump(index, outfile)
+		outfile.write('\n')
 
 def get_record(doc_id, score):
 	dataset = "../dataset/TelevisionNews/"

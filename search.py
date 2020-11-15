@@ -1,6 +1,4 @@
 import nltk
-import string
-from nltk.corpus import stopwords
 # import lemmatize, tokenize and inverted_index_generator
 from cosine_scoring import cosine_scoring
 from inverted_index import token_gen
@@ -11,9 +9,9 @@ class Search:
     def __init__(self, index, no_docs):
         # for preprocessing data
         # self.inv_ind = {}
-        self.inv_ind = index.inv_ind
+        self.inv_ind = index.get_inv_index()
         # pass inv_ind to kgram
-        self.kgram = index.kgram
+        self.kgram = index.get_kgram_obj()
         self.k = no_docs
     
     # Function which intersects the terms in query and then score the intersected documents
@@ -44,12 +42,13 @@ class Search:
                 term_count[t] += 1
         max_term = ''
         max_jaccard = 0
-        for t in term_count:
+        for t in term_count.keys():
             union = len(t) - 1 + term_bi_len - term_count[t]
             jaccard = term_count[t]/union
             if jaccard > max_jaccard:
                 max_jaccard = jaccard
                 max_term = t
+        #print("All terms:", term_count)
         return max_term
 
     def get_wild_query(self, term):
@@ -75,17 +74,21 @@ class Search:
         query_terms = []
         #position = -1
         self.wildcard_index = {} #for wildcard query term
-        for term in nltk.word_tokenize(query_text):
+        for term in query_text.split():
             print(term)
             term = token_gen.normalize(term)
             #position+=1
             if(term =='' or term == '``'):
                 continue
             if('*' in term):
+                print("Getting wildcard terms")
                 wildcard_terms = self.get_wild_query(term) #get all terms for mon*
+                print("The wildcard terms are:", wildcard_terms)
                 self.merge_terms(wildcard_terms, term) #should give new idf, champion list, zones list for wildcard query(eg:- 'mon*')
             elif term not in self.inv_ind:
+                print("Spelling correction")
                 term = self.spelling_correction(term)
+                print("Corrected word: ", term)
 
             query_terms.append(term)
         print("Query Terms:", query_terms)
