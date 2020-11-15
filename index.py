@@ -6,12 +6,12 @@ class Index:
     def __init__(self, inv_ind_path, kgram_path):
         self.__inv_ind = get_index(inv_ind_path)
         # check is kgram index already exists
-        if(is_file_exists(kgram_path)):
+        '''if(is_file_exists(kgram_path)):
             kgram_ind = get_index(kgram_path)
             self.__kgram = Kgram(self.__inv_ind, kgram_ind)
-        else:
-            self.__kgram = Kgram(self.__inv_ind)
-            write_index(kgram_path, self.__kgram.get_kgram_index())
+        else:'''
+        self.__kgram = Kgram(self.__inv_ind)
+        #write_index(kgram_path, self.__kgram.get_kgram_index())
     
     def get_inv_index(self):
         return self.__inv_ind

@@ -42,12 +42,13 @@ class Search:
                 term_count[t] += 1
         max_term = ''
         max_jaccard = 0
-        for t in term_count:
+        for t in term_count.keys():
             union = len(t) - 1 + term_bi_len - term_count[t]
             jaccard = term_count[t]/union
             if jaccard > max_jaccard:
                 max_jaccard = jaccard
                 max_term = t
+        print("All terms:", term_count)
         return max_term
 
     def get_wild_query(self, term):
@@ -80,10 +81,14 @@ class Search:
             if(term =='' or term == '``'):
                 continue
             if('*' in term):
+                print("Getting wildcard terms")
                 wildcard_terms = self.get_wild_query(term) #get all terms for mon*
+                print("The wildcard terms are:", wildcard_terms)
                 self.merge_terms(wildcard_terms, term) #should give new idf, champion list, zones list for wildcard query(eg:- 'mon*')
             elif term not in self.inv_ind:
+                print("Spelling correction")
                 term = self.spelling_correction(term)
+                print("Corrected word: ", term)
 
             query_terms.append(term)
         print("Query Terms:", query_terms)
