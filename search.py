@@ -1,6 +1,4 @@
 import nltk
-import string
-from nltk.corpus import stopwords
 # import lemmatize, tokenize and inverted_index_generator
 from cosine_scoring import cosine_scoring
 from inverted_index import token_gen
@@ -11,9 +9,9 @@ class Search:
     def __init__(self, index, no_docs):
         # for preprocessing data
         # self.inv_ind = {}
-        self.inv_ind = index.inv_ind
+        self.inv_ind = index.get_inv_index()
         # pass inv_ind to kgram
-        self.kgram = index.kgram
+        self.kgram = index.get_kgram_obj()
         self.k = no_docs
     
     # Function which intersects the terms in query and then score the intersected documents
