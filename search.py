@@ -74,7 +74,7 @@ class Search:
         query_terms = []
         #position = -1
         self.wildcard_index = {} #for wildcard query term
-        for term in nltk.word_tokenize(query_text):
+        for term in query_text.split():
             print(term)
             term = token_gen.normalize(term)
             #position+=1
