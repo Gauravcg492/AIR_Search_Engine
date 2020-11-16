@@ -1,0 +1,219 @@
+{
+  "took" : 188,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 5002,
+      "relation" : "eq"
+    },
+    "max_score" : 17.011303,
+    "hits" : [
+      {
+        "_index" : "bbcnews",
+        "_type" : "_doc",
+        "_id" : "oX5aynUBrC2dndoy_Wju",
+        "_score" : 17.011303,
+        "_source" : {
+          "@timestamp" : "2020-11-15T05:22:41.563Z",
+          "path" : "/home/anagha/Documents/Sem_7/AIR/Project/dataset/TelevisionNews/FOXNEWS.201502.csv",
+          "host" : "anagha-Lenovo-ideapad-320-15IKB",
+          "MatchDateTime" : "2/26/2015 0:06:54",
+          "IAShowID" : "FOXNEWSW_20150226_000000_On_the_Record_With_Greta_Van_Susteren",
+          "Station" : "FOXNEWS",
+          "Show" : "On the Record With Greta Van Susteren",
+          "@version" : "1",
+          "URL" : "https://archive.org/details/FOXNEWSW_20150226_000000_On_the_Record_With_Greta_Van_Susteren#start/399/end/434",
+          "Snippet" : "us. think are talking about threats, climate change, and their national security threat and their national security recent national security document is one of the biggest threats they list. they have to level with the american people about the threat that we have hot enemy is and what our broad",
+          "message" : "https://archive.org/details/FOXNEWSW_20150226_000000_On_the_Record_With_Greta_Van_Susteren#start/399/end/434,2/26/2015 0:06:54,FOXNEWS,On the Record With Greta Van Susteren,FOXNEWSW_20150226_000000_On_the_Record_With_Greta_Van_Susteren,https://archive.org/download/FOXNEWSW_20150226_000000_On_the_Record_With_Greta_Van_Susteren/FOXNEWSW_20150226_000000_On_the_Record_With_Greta_Van_Susteren.thumbs/FOXNEWSW_20150226_000000_On_the_Record_With_Greta_Van_Susteren_000375.jpg,\"us. think are talking about threats, climate change, and their national security threat and their national security recent national security document is one of the biggest threats they list. they have to level with the american people about the threat that we have hot enemy is and what our broad\"",
+          "IAPreviewThumb" : "https://archive.org/download/FOXNEWSW_20150226_000000_On_the_Record_With_Greta_Van_Susteren/FOXNEWSW_20150226_000000_On_the_Record_With_Greta_Van_Susteren.thumbs/FOXNEWSW_20150226_000000_On_the_Record_With_Greta_Van_Susteren_000375.jpg"
+        }
+      },
+      {
+        "_index" : "bbcnews",
+        "_type" : "_doc",
+        "_id" : "p35aynUBrC2dndoy_Wju",
+        "_score" : 17.011303,
+        "_source" : {
+          "@timestamp" : "2020-11-15T05:22:41.563Z",
+          "path" : "/home/anagha/Documents/Sem_7/AIR/Project/dataset/TelevisionNews/FOXNEWS.201502.csv",
+          "host" : "anagha-Lenovo-ideapad-320-15IKB",
+          "MatchDateTime" : "2/26/2015 7:06:54",
+          "IAShowID" : "FOXNEWSW_20150226_070000_On_the_Record_With_Greta_Van_Susteren",
+          "Station" : "FOXNEWS",
+          "Show" : "On the Record With Greta Van Susteren",
+          "@version" : "1",
+          "URL" : "https://archive.org/details/FOXNEWSW_20150226_070000_On_the_Record_With_Greta_Van_Susteren#start/399/end/434",
+          "Snippet" : "us. think are talking about threats, climate change, and their national security threat and their national security recent national security document is one of the biggest threats they list. they have to level with the american people about the threat that we have hot enemy is and what our broad",
+          "message" : "https://archive.org/details/FOXNEWSW_20150226_070000_On_the_Record_With_Greta_Van_Susteren#start/399/end/434,2/26/2015 7:06:54,FOXNEWS,On the Record With Greta Van Susteren,FOXNEWSW_20150226_070000_On_the_Record_With_Greta_Van_Susteren,https://archive.org/download/FOXNEWSW_20150226_070000_On_the_Record_With_Greta_Van_Susteren/FOXNEWSW_20150226_070000_On_the_Record_With_Greta_Van_Susteren.thumbs/FOXNEWSW_20150226_070000_On_the_Record_With_Greta_Van_Susteren_000375.jpg,\"us. think are talking about threats, climate change, and their national security threat and their national security recent national security document is one of the biggest threats they list. they have to level with the american people about the threat that we have hot enemy is and what our broad\"",
+          "IAPreviewThumb" : "https://archive.org/download/FOXNEWSW_20150226_070000_On_the_Record_With_Greta_Van_Susteren/FOXNEWSW_20150226_070000_On_the_Record_With_Greta_Van_Susteren.thumbs/FOXNEWSW_20150226_070000_On_the_Record_With_Greta_Van_Susteren_000375.jpg"
+        }
+      },
+      {
+        "_index" : "bbcnews",
+        "_type" : "_doc",
+        "_id" : "OH5bynUBrC2dndoyB3Xp",
+        "_score" : 16.342415,
+        "_source" : {
+          "@timestamp" : "2020-11-15T05:22:44.106Z",
+          "path" : "/home/anagha/Documents/Sem_7/AIR/Project/dataset/TelevisionNews/FOXNEWS.201610.csv",
+          "host" : "anagha-Lenovo-ideapad-320-15IKB",
+          "MatchDateTime" : "10/11/2016 19:41:05",
+          "IAShowID" : "FOXNEWSW_20161011_190000_Shepard_Smith_Reporting",
+          "Station" : "FOXNEWS",
+          "Show" : "Shepard Smith Reporting",
+          "@version" : "1",
+          "URL" : "https://archive.org/details/FOXNEWSW_20161011_190000_Shepard_Smith_Reporting#start/2450/end/2485",
+          "Snippet" : "9 million acres in our country last year. and it's also about our national security. the pentagon has identified climate change as a threat to our national security.",
+          "message" : "https://archive.org/details/FOXNEWSW_20161011_190000_Shepard_Smith_Reporting#start/2450/end/2485,10/11/2016 19:41:05,FOXNEWS,Shepard Smith Reporting,FOXNEWSW_20161011_190000_Shepard_Smith_Reporting,https://archive.org/download/FOXNEWSW_20161011_190000_Shepard_Smith_Reporting/FOXNEWSW_20161011_190000_Shepard_Smith_Reporting.thumbs/FOXNEWSW_20161011_190000_Shepard_Smith_Reporting_002428.jpg,\"9 million acres in our country last year. and it's also about our national security. the pentagon has identified climate change as a threat to our national security.\"",
+          "IAPreviewThumb" : "https://archive.org/download/FOXNEWSW_20161011_190000_Shepard_Smith_Reporting/FOXNEWSW_20161011_190000_Shepard_Smith_Reporting.thumbs/FOXNEWSW_20161011_190000_Shepard_Smith_Reporting_002428.jpg"
+        }
+      },
+      {
+        "_index" : "bbcnews",
+        "_type" : "_doc",
+        "_id" : "6H5aynUBrC2dndoy1kBw",
+        "_score" : 16.177923,
+        "_source" : {
+          "@timestamp" : "2020-11-15T05:22:31.963Z",
+          "path" : "/home/anagha/Documents/Sem_7/AIR/Project/dataset/TelevisionNews/FOXNEWS.201001.csv",
+          "host" : "anagha-Lenovo-ideapad-320-15IKB",
+          "MatchDateTime" : "1/29/2010 20:00:16",
+          "IAShowID" : "FOXNEWS_20100129_200000_Studio_B_With_Shepard_Smith",
+          "Station" : "FOXNEWS",
+          "Show" : "Studio B With Shepard Smith",
+          "@version" : "1",
+          "URL" : "https://archive.org/details/FOXNEWS_20100129_200000_Studio_B_With_Shepard_Smith#start/1/end/36",
+          "Snippet" : "military leader outline climate change as a threat to national security. that's right, climate change at a threat to national security. a new report the pentagon is scheduled to release, we have it and we'll share the details coming up.",
+          "message" : "https://archive.org/details/FOXNEWS_20100129_200000_Studio_B_With_Shepard_Smith#start/1/end/36,1/29/2010 20:00:16,FOXNEWS,Studio B With Shepard Smith,FOXNEWS_20100129_200000_Studio_B_With_Shepard_Smith,https://archive.org/download/FOXNEWS_20100129_200000_Studio_B_With_Shepard_Smith/FOXNEWS_20100129_200000_Studio_B_With_Shepard_Smith.thumbs/FOXNEWS_20100129_200000_Studio_B_With_Shepard_Smith_000030.jpg,\"military leader outline climate change as a threat to national security. that's right, climate change at a threat to national security. a new report the pentagon is scheduled to release, we have it and we'll share the details coming up.\"",
+          "IAPreviewThumb" : "https://archive.org/download/FOXNEWS_20100129_200000_Studio_B_With_Shepard_Smith/FOXNEWS_20100129_200000_Studio_B_With_Shepard_Smith.thumbs/FOXNEWS_20100129_200000_Studio_B_With_Shepard_Smith_000030.jpg"
+        }
+      },
+      {
+        "_index" : "bbcnews",
+        "_type" : "_doc",
+        "_id" : "GH5aynUBrC2dndoy_mpu",
+        "_score" : 16.09346,
+        "_source" : {
+          "@timestamp" : "2020-11-15T05:22:42.189Z",
+          "path" : "/home/anagha/Documents/Sem_7/AIR/Project/dataset/TelevisionNews/FOXNEWS.201505.csv",
+          "host" : "anagha-Lenovo-ideapad-320-15IKB",
+          "MatchDateTime" : "5/23/2015 15:00:47",
+          "IAShowID" : "FOXNEWSW_20150523_150000_Forbes_on_FOX",
+          "Station" : "FOXNEWS",
+          "Show" : "Forbes on FOX",
+          "@version" : "1",
+          "URL" : "https://archive.org/details/FOXNEWSW_20150523_150000_Forbes_on_FOX#start/32/end/67",
+          "Snippet" : "national security is this -- climate change constitutes a serious threat to global security. an immediate risk to our national security. and make no mistake, it will impact how our military defends our country. is he right?",
+          "message" : "https://archive.org/details/FOXNEWSW_20150523_150000_Forbes_on_FOX#start/32/end/67,5/23/2015 15:00:47,FOXNEWS,Forbes on FOX,FOXNEWSW_20150523_150000_Forbes_on_FOX,https://archive.org/download/FOXNEWSW_20150523_150000_Forbes_on_FOX/FOXNEWSW_20150523_150000_Forbes_on_FOX.thumbs/FOXNEWSW_20150523_150000_Forbes_on_FOX_000045.jpg,\"national security is this -- climate change constitutes a serious threat to global security. an immediate risk to our national security. and make no mistake, it will impact how our military defends our country. is he right?\"",
+          "IAPreviewThumb" : "https://archive.org/download/FOXNEWSW_20150523_150000_Forbes_on_FOX/FOXNEWSW_20150523_150000_Forbes_on_FOX.thumbs/FOXNEWSW_20150523_150000_Forbes_on_FOX_000045.jpg"
+        }
+      },
+      {
+        "_index" : "bbcnews",
+        "_type" : "_doc",
+        "_id" : "G35bynUBrC2dndoyE4HA",
+        "_score" : 16.068556,
+        "_source" : {
+          "@timestamp" : "2020-11-15T05:22:47.397Z",
+          "path" : "/home/anagha/Documents/Sem_7/AIR/Project/dataset/TelevisionNews/FOXNEWS.201712.csv",
+          "host" : "anagha-Lenovo-ideapad-320-15IKB",
+          "MatchDateTime" : "12/17/2017 11:48:29",
+          "IAShowID" : "FOXNEWSW_20171217_110000_Fox_and_Friends_Sunday",
+          "Station" : "FOXNEWS",
+          "Show" : "Fox and Friends Sunday",
+          "@version" : "1",
+          "URL" : "https://archive.org/details/FOXNEWSW_20171217_110000_Fox_and_Friends_Sunday#start/2894/end/2929",
+          "Snippet" : "in the cia national security in a looked puzzled by it. how is this putting america first? climate change was never a national security threat. it was obama's liberal politics",
+          "message" : "https://archive.org/details/FOXNEWSW_20171217_110000_Fox_and_Friends_Sunday#start/2894/end/2929,12/17/2017 11:48:29,FOXNEWS,Fox and Friends Sunday,FOXNEWSW_20171217_110000_Fox_and_Friends_Sunday,https://archive.org/download/FOXNEWSW_20171217_110000_Fox_and_Friends_Sunday/FOXNEWSW_20171217_110000_Fox_and_Friends_Sunday.thumbs/FOXNEWSW_20171217_110000_Fox_and_Friends_Sunday_002877.jpg,\"in the cia national security in a looked puzzled by it. how is this putting america first? climate change was never a national security threat. it was obama's liberal politics\"",
+          "IAPreviewThumb" : "https://archive.org/download/FOXNEWSW_20171217_110000_Fox_and_Friends_Sunday/FOXNEWSW_20171217_110000_Fox_and_Friends_Sunday.thumbs/FOXNEWSW_20171217_110000_Fox_and_Friends_Sunday_002877.jpg"
+        }
+      },
+      {
+        "_index" : "bbcnews",
+        "_type" : "_doc",
+        "_id" : "JX5bynUBrC2dndoyjNnI",
+        "_score" : 16.068556,
+        "_source" : {
+          "@timestamp" : "2020-11-15T05:23:18.397Z",
+          "path" : "/home/anagha/Documents/Sem_7/AIR/Project/dataset/TelevisionNews/MSNBC.201610.csv",
+          "host" : "anagha-Lenovo-ideapad-320-15IKB",
+          "MatchDateTime" : "10/11/2016 19:41:12",
+          "IAShowID" : "MSNBCW_20161011_190000_MSNBC_Live",
+          "Station" : "MSNBC",
+          "Show" : "MSNBC Live",
+          "@version" : "1",
+          "URL" : "https://archive.org/details/MSNBCW_20161011_190000_MSNBC_Live#start/2457/end/2492",
+          "Snippet" : "and it's also about our national security. the pentagon has identified climate change as a threat to our national security. the u.s. atlantic fleet is based in norfolk, virginia, the",
+          "message" : "https://archive.org/details/MSNBCW_20161011_190000_MSNBC_Live#start/2457/end/2492,10/11/2016 19:41:12,MSNBC,MSNBC Live,MSNBCW_20161011_190000_MSNBC_Live,https://archive.org/download/MSNBCW_20161011_190000_MSNBC_Live/MSNBCW_20161011_190000_MSNBC_Live.thumbs/MSNBCW_20161011_190000_MSNBC_Live_002458.jpg,\"and it's also about our national security. the pentagon has identified climate change as a threat to our national security. the u.s. atlantic fleet is based in norfolk, virginia, the\"",
+          "IAPreviewThumb" : "https://archive.org/download/MSNBCW_20161011_190000_MSNBC_Live/MSNBCW_20161011_190000_MSNBC_Live.thumbs/MSNBCW_20161011_190000_MSNBC_Live_002458.jpg"
+        }
+      },
+      {
+        "_index" : "bbcnews",
+        "_type" : "_doc",
+        "_id" : "WX5aynUBrC2dndoy_Wh0",
+        "_score" : 15.957467,
+        "_source" : {
+          "@timestamp" : "2020-11-15T05:22:41.522Z",
+          "path" : "/home/anagha/Documents/Sem_7/AIR/Project/dataset/TelevisionNews/FOXNEWS.201502.csv",
+          "host" : "anagha-Lenovo-ideapad-320-15IKB",
+          "MatchDateTime" : "2/7/2015 0:12:05",
+          "IAShowID" : "FOXNEWSW_20150207_000000_On_the_Record_With_Greta_Van_Susteren",
+          "Station" : "FOXNEWS",
+          "Show" : "On the Record With Greta Van Susteren",
+          "@version" : "1",
+          "URL" : "https://archive.org/details/FOXNEWSW_20150207_000000_On_the_Record_With_Greta_Van_Susteren#start/710/end/745",
+          "Snippet" : "their national security. and one of the things she said was that climate change is considered a national security threat by the administration. and she also tried to down play terror in general as a threat by saying, look there are clearly problems",
+          "message" : "https://archive.org/details/FOXNEWSW_20150207_000000_On_the_Record_With_Greta_Van_Susteren#start/710/end/745,2/7/2015 0:12:05,FOXNEWS,On the Record With Greta Van Susteren,FOXNEWSW_20150207_000000_On_the_Record_With_Greta_Van_Susteren,https://archive.org/download/FOXNEWSW_20150207_000000_On_the_Record_With_Greta_Van_Susteren/FOXNEWSW_20150207_000000_On_the_Record_With_Greta_Van_Susteren.thumbs/FOXNEWSW_20150207_000000_On_the_Record_With_Greta_Van_Susteren_000705.jpg,\"their national security. and one of the things she said was that climate change is considered a national security threat by the administration. and she also tried to down play terror in general as a threat by saying, look there are clearly problems\"",
+          "IAPreviewThumb" : "https://archive.org/download/FOXNEWSW_20150207_000000_On_the_Record_With_Greta_Van_Susteren/FOXNEWSW_20150207_000000_On_the_Record_With_Greta_Van_Susteren.thumbs/FOXNEWSW_20150207_000000_On_the_Record_With_Greta_Van_Susteren_000705.jpg"
+        }
+      },
+      {
+        "_index" : "bbcnews",
+        "_type" : "_doc",
+        "_id" : "uX5bynUBrC2dndoyAG_O",
+        "_score" : 15.894644,
+        "_source" : {
+          "@timestamp" : "2020-11-15T05:22:42.817Z",
+          "path" : "/home/anagha/Documents/Sem_7/AIR/Project/dataset/TelevisionNews/FOXNEWS.201511.csv",
+          "host" : "anagha-Lenovo-ideapad-320-15IKB",
+          "MatchDateTime" : "11/15/2015 9:37:51",
+          "IAShowID" : "FOXNEWSW_20151115_090000_Americas_Election_HQ",
+          "Station" : "FOXNEWS",
+          "Show" : "Americas Election HQ",
+          "@version" : "1",
+          "URL" : "https://archive.org/details/FOXNEWSW_20151115_090000_Americas_Election_HQ#start/2256/end/2291",
+          "Snippet" : "that climate change is still the biggest national security threat, even after paris and what happened just yesterday? bernie sanders said, yes, absolutely. this is our biggest national security threat. he said it's directly tied to terror. pretty interesting moments. secretary clinton on defense",
+          "message" : "https://archive.org/details/FOXNEWSW_20151115_090000_Americas_Election_HQ#start/2256/end/2291,11/15/2015 9:37:51,FOXNEWS,Americas Election HQ,FOXNEWSW_20151115_090000_Americas_Election_HQ,https://archive.org/download/FOXNEWSW_20151115_090000_Americas_Election_HQ/FOXNEWSW_20151115_090000_Americas_Election_HQ.thumbs/FOXNEWSW_20151115_090000_Americas_Election_HQ_002235.jpg,\"that climate change is still the biggest national security threat, even after paris and what happened just yesterday? bernie sanders said, yes, absolutely. this is our biggest national security threat. he said it's directly tied to terror. pretty interesting moments. secretary clinton on defense\"",
+          "IAPreviewThumb" : "https://archive.org/download/FOXNEWSW_20151115_090000_Americas_Election_HQ/FOXNEWSW_20151115_090000_Americas_Election_HQ.thumbs/FOXNEWSW_20151115_090000_Americas_Election_HQ_002235.jpg"
+        }
+      },
+      {
+        "_index" : "bbcnews",
+        "_type" : "_doc",
+        "_id" : "wH5bynUBrC2dndoyAW-P",
+        "_score" : 15.894644,
+        "_source" : {
+          "@timestamp" : "2020-11-15T05:22:42.857Z",
+          "path" : "/home/anagha/Documents/Sem_7/AIR/Project/dataset/TelevisionNews/FOXNEWS.201511.csv",
+          "host" : "anagha-Lenovo-ideapad-320-15IKB",
+          "MatchDateTime" : "11/15/2015 3:37:52",
+          "IAShowID" : "FOXNEWSW_20151115_030000_Watters_World",
+          "Station" : "FOXNEWS",
+          "Show" : "Watters World",
+          "@version" : "1",
+          "URL" : "https://archive.org/details/FOXNEWSW_20151115_030000_Watters_World#start/2257/end/2292",
+          "Snippet" : "that climate change is still the biggest national security threat, even after paris and what happened just yesterday? bernie sanders said, yes, absolutely. this is our biggest national security threat. he said it's directly tied to terror. pretty interesting moments. secretary clinton on defense",
+          "message" : "https://archive.org/details/FOXNEWSW_20151115_030000_Watters_World#start/2257/end/2292,11/15/2015 3:37:52,FOXNEWS,Watters World,FOXNEWSW_20151115_030000_Watters_World,https://archive.org/download/FOXNEWSW_20151115_030000_Watters_World/FOXNEWSW_20151115_030000_Watters_World.thumbs/FOXNEWSW_20151115_030000_Watters_World_002235.jpg,\"that climate change is still the biggest national security threat, even after paris and what happened just yesterday? bernie sanders said, yes, absolutely. this is our biggest national security threat. he said it's directly tied to terror. pretty interesting moments. secretary clinton on defense\"",
+          "IAPreviewThumb" : "https://archive.org/download/FOXNEWSW_20151115_030000_Watters_World/FOXNEWSW_20151115_030000_Watters_World.thumbs/FOXNEWSW_20151115_030000_Watters_World_002235.jpg"
+        }
+      }
+    ]
+  }
+}

@@ -29,14 +29,14 @@ def search_engine():
 		json.dump(result, outfile)
 
 	metric_tuple= metrics.get_metrics(query)
-	our_time = round((stop-start)*1000, 4)
+	our_time = round((stop-start)*1000)
 	es_time = metrics.get_ES_time()
 
-	print("\n\n\n-----------METRICS--------------")
+	print("\n\n\n----------------------METRICS-------------------------")
 	print("Precision, Recall, F-score = ", metric_tuple)
 	print("Time taken by our SE (in ms): ", our_time)
-	print("Time taken by Elastic Search (in ms)", es_time)
-	print("---------------------------------\n\n\n")
+	print("Time taken by Elastic Search (in ms):", es_time)
+	print("-------------------------------------------------------------\n\n\n")
 
 	#metrics.clean(["our_op.json", "elastic_op.json"])
 
