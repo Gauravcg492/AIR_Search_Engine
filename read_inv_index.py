@@ -27,7 +27,7 @@ def get_record(doc_id, score):
 	#print("real_row_no", real_row_no)
 	#print("score ", score)
 	record = dict(df.iloc[real_row_no])
-	return (filename+".csv", row_no, score, record)
+	return (filename+".csv", row_no, record)
 
 
 

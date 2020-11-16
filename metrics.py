@@ -28,7 +28,7 @@ def send_ES_req(query):
 	query = query.replace(" ", "+")
 	url = '"http://localhost:9200/bbcnews/_search?q="'+ query+ '"&pretty"'
 	cmd = 'curl -H "Content-Type: application/json" -XPOST ' +url+ ' > elastic_op.json'
-	print(cmd)
+	#print(cmd)
 	try:
 		res = os.system(cmd)
 	except Exception as e:
@@ -51,7 +51,7 @@ def read_our_json(file):
 		f=open(file,'r')
 		data = json.load(f)
 		for el in data:
-			record = el[3]
+			record = el[2]
 			our_URL_set.add(record["URL"])
 	except Exception as e:
 		print("Cannot read our search engine's results. ", e)

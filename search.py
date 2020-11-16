@@ -75,23 +75,23 @@ class Search:
         #position = -1
         self.wildcard_index = {} #for wildcard query term
         for term in query_text.split():
-            print(term)
+            #print(term)
             term = token_gen.normalize(term)
             #position+=1
             if(term =='' or term == '``'):
                 continue
             if('*' in term):
-                print("Getting wildcard terms")
+                #print("Getting wildcard terms")
                 wildcard_terms = self.get_wild_query(term) #get all terms for mon*
-                print("The wildcard terms are:", wildcard_terms)
+                #print("The wildcard terms are:", wildcard_terms)
                 self.merge_terms(wildcard_terms, term) #should give new idf, champion list, zones list for wildcard query(eg:- 'mon*')
             elif term not in self.inv_ind:
-                print("Spelling correction")
+                #print("Spelling correction")
                 term = self.spelling_correction(term)
-                print("Corrected word: ", term)
+                #print("Corrected word: ", term)
 
             query_terms.append(term)
-        print("Query Terms:", query_terms)
+        #print("Query Terms:", query_terms)
         self.query_terms = query_terms 
         '''
         cosine_score1=self.intersect_score()
@@ -107,11 +107,11 @@ class Search:
                 total_cosine_score = sorted(set(total_cosine_score + cosine_score3))
                 result = self.return_documents(total_cosine_score)
         '''
-        print("Calling Intersection")
+        #print("Calling Intersection")
         doc_list = self.intersect_doc_list()
-        print("Doc list:", len(doc_list))
+        #print("Doc list:", len(doc_list))
         if len(doc_list) < self.k:
-            print("Calling Merge")
+            #print("Calling Merge")
             doc_list = self.union_doc_list()
         print("Total documents:", len(doc_list))
         cosine_scores = cosine_scoring.get_cosine_score(self.inv_ind, self.wildcard_index, self.query_terms, doc_list)
