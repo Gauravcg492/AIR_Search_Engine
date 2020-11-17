@@ -8,6 +8,7 @@ def posintersect(p1,p2):
     lp1 = len(p1)
     lp2 = len(p2)
     while i<lp1 and j<lp2:
+        #docIDs matched put in the intermediate result list(ans) containing matched docID and 2nd term position
         if p1[i][0] == p2[j][0]:
             l=[]
             x=0
@@ -18,7 +19,7 @@ def posintersect(p1,p2):
             lpp2 = len(pp2)
             while x<lpp1:
                 while y<lpp2:
-                    if pp2[y]-pp1[x]==1:
+                    if pp2[y]-pp1[x]==1:#here we check for k=1 since the words are adjecent to each other. 
                         l.append(pp2[y])
                     elif pp2[y]>pp1[x]:
                         break
@@ -31,10 +32,12 @@ def posintersect(p1,p2):
             i += 1
             j += 1
         else:
+            #otherwise advance corresponding pointers accordingly
             if p1[i][0] < p2[j][0]: 
                 i += 1
             else:
                 j += 1
+    #now convert the intermediate result list(ans) to adjacency list of mappings between docIDs and the list of 2nd term positions(nans)
     nans = []
     for t in ans:
         lgth = len(nans)
@@ -59,9 +62,9 @@ def posinter_over_invindex(invindex,query, wildcard_index, champion =True):
     for i in range(1,len(query)):
         p3 =  invindex[query[i]][index] if ('*' not in query[i]) else wildcard_index[query[i]][index]
         print("p1 len and p3 len", len(p1), len(p3))
-        p1 = posintersect(p1,p3)
+        p1 = posintersect(p1,p3)#Get the matched documents with the correct position in inverted index p3 for the next iteration to match with next word 
     print("Returning Documents After Intersection")
-    return list(map(lambda l:l[0],p1))
+    return list(map(lambda l:l[0],p1))#extract only candidate docIDS
     
 def merge_docs(inv_ind, terms, wildcard_index, champion_list = False):
     doc_set = set()
