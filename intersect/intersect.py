@@ -115,8 +115,10 @@ def merge_terms(term1_index, term2_index):
 def kgramintersect(kgramdict,orig,pref):
     itr = iter(kgramdict)
     res = kgramdict[next(itr)]
+    #Do intersection of the lists corresponding to 2 kgram every iteration.
     for _ in range(len(kgramdict)-1):
         res = list(set(res) & set(kgramdict[next(itr)]))
+    #Do post-filtering if it doesn't match with wildcard query later.
     remlst = []
     for i in range(len(res)):
         if orig not in res[i] or (pref and orig != res[i][:len(orig)]) or (not pref and orig != res[i][-len(orig):]):
